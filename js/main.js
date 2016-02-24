@@ -1,7 +1,10 @@
 utils.loadTemplate([
 	'HeaderView',
 	'LoginView',
-	'HomeView'
+	'HomeView',
+	'SessionView',
+	'LectureQuestionView',
+	'LectureQuestionOverView',
 ], function () {
 	app = new AppRouter();
 	Backbone.history.start();
@@ -9,3 +12,5 @@ utils.loadTemplate([
 		app.navigate("/", true);
 	}
 });
+
+//sessionkey: 44826863

@@ -1,6 +1,6 @@
 window.LoginView = Backbone.View.extend({
 	events: {
-		"click .js-login": "login",
+		"click .js-login": "login"
 	},
 	initialize: function () {
 		this.render();
@@ -17,7 +17,8 @@ window.LoginView = Backbone.View.extend({
 			username + "&password=" + password,
 			type: 'POST',
 			success: function (data) {
-				app.navigate("/home", true);
+				app.initialize();
+				app.navigate("/", true);
 			}
 		});
 	}

@@ -1,3 +1,11 @@
-.top.-margin{
+.top-margin{
 	margin-top:50px;
+}
+.expanded-question{
+	display: none;
+}
+.tools-bar{
+}
+.question-text{
+	margin-top: 10px;
 }
