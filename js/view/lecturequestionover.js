@@ -5,10 +5,9 @@ window.LectureQuestionOverView = Backbone.View.extend({
 	render: function () {
 		var html = "";
 		$(this.el).html(this.template());
-		for (var i = 0; i < this.model.models.length; i++) {
-			var question = new LectureQuestion();
-			question.attributes = this.model.models[i];
-			console.log(question.attributes);
+		for (var i = 0; i < this.model.length; i++) {
+			var question = new SkillQuestion();
+			question.attributes = this.model[i];
 			var lectureQuestionView = new LectureQuestionView({model: question});
 			$(this.el).append(lectureQuestionView.render().el);
 		}

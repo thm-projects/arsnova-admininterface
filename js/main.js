@@ -8,6 +8,8 @@ utils.loadTemplate([
 ], function () {
 	app = new AppRouter();
 	authService = new AuthService();
+	sessionService = new SessionService();
+	skillQuestionService = new SkillQuestionService();
 	Backbone.history.start();
 	if(!$.cookie('JSESSIONID')) {
 		app.navigate("/", true);

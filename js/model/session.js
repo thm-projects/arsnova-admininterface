@@ -26,16 +26,4 @@ window.Session = Backbone.Model.extend({
 	},
 	initialize: function () {
 	},
-	fetch: function (key, options) {
-		var me = this;
-		$.ajax({
-			url: "api/session/" + key,
-			type: 'GET',
-			success: function (data) {
-				me.attributes = data;
-				options.success();
-			},
-			error: options.error
-		});
-	}
 });

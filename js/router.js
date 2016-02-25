@@ -29,9 +29,9 @@ var AppRouter = Backbone.Router.extend({
 		}
 	},
 	enterSession: function (sessionkey) {
-		var session = new Session();
-		session.fetch(sessionkey, {
-			success: function () {
+		sessionService.getSession(sessionkey, {
+			success: function (data) {
+				var session = new Session(data);
 				sessionStorage.setItem("sessionkey", sessionkey);
 				this.sessionView = new SessionView({model: session});
 				$('.maintpl').html(this.sessionView.el);
@@ -42,10 +42,9 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showLectureQuestions: function (sessionkey) {
-		var lectureQuestionCol = new LectureQuestionCollection();
-		lectureQuestionCol.fetch(sessionkey, {
-			success: function () {
-				this.lectureQuestionOverView = new LectureQuestionOverView({model: lectureQuestionCol});
+		skillQuestionService.getLectureQuestionsForSession(sessionkey, {
+			success: function (data) {
+				this.lectureQuestionOverView = new LectureQuestionOverView({model: data});
 				$('.maintpl').html(this.lectureQuestionOverView.el);
 			},
 			error: function () {

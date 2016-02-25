@@ -1,4 +1,4 @@
-window.LectureQuestion = Backbone.Model.extend({
+window.SkillQuestion = Backbone.Model.extend({
 	defaults: {
 		_rev: "",
 		abstention: "",
@@ -56,17 +56,3 @@ window.LectureQuestion = Backbone.Model.extend({
 	initialize: function () {
 	},
 });
-window.LectureQuestionCollection = Backbone.Collection.extend({
-	fetch: function (key, options) {
-		var me = this;
-		$.ajax({
-			url: "api/lecturerquestion/?lecturequestionsonly=true&sessionkey=" + key,
-			type: 'GET',
-			success: function (data) {
-				me.models = data;
-				options.success();
-			},
-			error: options.error
-		});
-	}
-})
