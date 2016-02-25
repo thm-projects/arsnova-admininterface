@@ -7,10 +7,9 @@ utils.loadTemplate([
 	'LectureQuestionOverView',
 ], function () {
 	app = new AppRouter();
+	authService = new AuthService();
 	Backbone.history.start();
 	if(!$.cookie('JSESSIONID')) {
 		app.navigate("/", true);
 	}
 });
-
-//sessionkey: 44826863

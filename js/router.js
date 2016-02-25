@@ -1,6 +1,7 @@
 var AppRouter = Backbone.Router.extend({
 	routes: {
 		"": "login",
+		"home": "login",
 		"session/:key": "enterSession",
 		"session/:key/lecturequestions": "showLectureQuestions",
 		"session/:key/preparationquestions": "showPreparationQuestions",
@@ -22,6 +23,7 @@ var AppRouter = Backbone.Router.extend({
 			$('.maintpl').html(this.loginView.el);
 		}
 		else {
+			authService.whoami();
 			this.homeView = new HomeView();
 			$('.maintpl').html(this.homeView.el);
 		}

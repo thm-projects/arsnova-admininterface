@@ -18,7 +18,7 @@ window.LoginView = Backbone.View.extend({
 			type: 'POST',
 			success: function (data) {
 				app.initialize();
-				app.navigate("/", true);
+				app.navigate("/home", true);
 			}
 		});
 	}
