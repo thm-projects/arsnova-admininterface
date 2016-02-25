@@ -12,10 +12,7 @@ window.LoginView = Backbone.View.extend({
 	login: function () {
 		var username = encodeURIComponent($('#inputusername').val());
 		var password = encodeURIComponent($('#inputpassword').val());
-		$.ajax({
-			url: "api/auth/login?type=arsnova&user=" +
-			username + "&password=" + password,
-			type: 'POST',
+		authService.login(username, password, {
 			success: function (data) {
 				app.initialize();
 				app.navigate("/home", true);
