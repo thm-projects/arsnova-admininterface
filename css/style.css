@@ -1,11 +1,17 @@
 .top-margin{
 	margin-top:50px;
 }
-.expanded-question{
+.expanded-model{
 	display: none;
 }
 .tools-bar{
 }
-.question-text{
+.model-text{
 	margin-top: 10px;
+}
+.model-container{
+	margin-top: -10px;
+}
+.models{
+	margin-bottom: 30px;
 }

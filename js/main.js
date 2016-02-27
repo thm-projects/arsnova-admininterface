@@ -5,9 +5,12 @@ utils.loadTemplate([
 	'SessionView',
 	'LectureQuestionView',
 	'LectureQuestionOverView',
+	'MotdView',
+	'MotdOverView',
 ], function () {
 	app = new AppRouter();
 	authService = new AuthService();
+	motdService = new MotdService();
 	sessionService = new SessionService();
 	skillQuestionService = new SkillQuestionService();
 	Backbone.history.start();

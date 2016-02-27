@@ -2,7 +2,7 @@ var SkillQuestionService = function () {
 	return {
 		getLectureQuestionsForSession: function (key, options) {
 			$.ajax({
-				url: "api/lecturerquestion/?lecturequestionsonly=true&sessionkey=" + key,
+				url: "api/lecturerquestion/?lecturequestionsonly=true&requestImageData=true&sessionkey=" + key,
 				type: 'GET',
 				success: options.success,
 				error: function () {

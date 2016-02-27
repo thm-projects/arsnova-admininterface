@@ -2,7 +2,8 @@ window.SessionView = Backbone.View.extend({
 	events: {
 		"click .js-show-lectureQuestions": "lectureQuestions",
 		"click .js-show-preparationQuestions": "preparationQuestions",
-		"click .js-show-interposedQuestions": "interposedQuestions"
+		"click .js-show-interposedQuestions": "interposedQuestions",
+		"click .js-show-motds": "motds",
 	},
 	initialize: function () {
 		this.render();
@@ -19,5 +20,8 @@ window.SessionView = Backbone.View.extend({
 	},
 	interposedQuestions: function () {
 		app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/interposedquestions", true);
+	},
+	motds: function () {
+		app.navigate("/motd", true);
 	}
 });

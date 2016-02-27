@@ -1,12 +1,10 @@
-window.LectureQuestionView = Backbone.View.extend({
+window.MotdView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
-		"click .js-get-answers": "getAnswers",
-		"click .js-get-raw": "getRaw",
-		"click .js-delete-model": "deleteQuestion",
+		"click .js-delete-model": "deleteMotd",
 	},
 	initialize: function () {
-		this.render();
+
 	},
 	render: function () {
 		var raw = this.model.toJSON();
@@ -18,12 +16,15 @@ window.LectureQuestionView = Backbone.View.extend({
 		$('.expanded-model', this.el).toggle();
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
-	getAnswers: function () {
-
-	},
-	getRaw: function () {
-	},
-	deleteQuestion: function () {
-
+	deleteMotd: function () {
+		var me = this;
+		motdService.deleteMotd(this.model.attributes.motdkey, {
+			success: function () {
+				window.rootView.model = _.without(window.rootView.model, me.model.attributes);
+				window.rootView.render();
+			},
+			error: function () {
+			}
+		})
 	},
 });

@@ -6,6 +6,7 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/lecturequestions": "showLectureQuestions",
 		"session/:key/preparationquestions": "showPreparationQuestions",
 		"session/:key/interposedquestions": "showInterposedQuestions",
+		"motd": "getAdminMotds",
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
@@ -37,7 +38,7 @@ var AppRouter = Backbone.Router.extend({
 				$('.maintpl').html(this.sessionView.el);
 			},
 			error: function () {
-				console.log("error fetching session data");
+				//show error nicely. but not now
 			}
 		});
 	},
@@ -48,7 +49,7 @@ var AppRouter = Backbone.Router.extend({
 				$('.maintpl').html(this.lectureQuestionOverView.el);
 			},
 			error: function () {
-				console.log("error fetching lectureQuestions");
+				//show error nicely. but not now
 			}
 		});
 	},
@@ -57,5 +58,17 @@ var AppRouter = Backbone.Router.extend({
 	},
 	showInterposedQuestions: function (sessionkey) {
 
+	},
+	getAdminMotds: function () {
+		motdService.getAdminMotds({
+			success: function (data) {
+				this.motdView = new MotdOverView({model: data});
+				$('.maintpl').html(this.motdView.el);
+				window.rootView = this.motdView;
+			},
+			error: function () {
+				//show error nicely. but not now
+			}
+		});
 	}
 });
