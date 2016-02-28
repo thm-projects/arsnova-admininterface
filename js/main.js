@@ -7,6 +7,7 @@ utils.loadTemplate([
 	'LectureQuestionOverView',
 	'MotdView',
 	'MotdOverView',
+	'PossibleAnswerView',
 ], function () {
 	app = new AppRouter();
 	authService = new AuthService();

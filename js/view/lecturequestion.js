@@ -2,6 +2,7 @@ window.LectureQuestionView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
 		"click .js-get-answers": "getAnswers",
+		"click .js-get-possibleanswers": "getPossibleAnswers",
 		"click .js-get-raw": "getRaw",
 		"click .js-delete-model": "deleteQuestion",
 	},
@@ -22,6 +23,16 @@ window.LectureQuestionView = Backbone.View.extend({
 	},
 	getAnswers: function () {
 
+	},
+	getPossibleAnswers: function (e) {
+		if (!this.possibleAnswerOverView) {
+			this.possibleAnswerOverView = new PossibleAnswerOverView({model: this.model.attributes.possibleAnswers});
+			$('.possibleanswers', this.el).append(this.possibleAnswerOverView.el);
+			$('.possibleanswers', this.el).show();
+		}
+		else {
+			$('.possibleanswers', this.el).toggle();
+		}
 	},
 	getRaw: function () {
 	},
