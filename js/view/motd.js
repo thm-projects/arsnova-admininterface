@@ -9,6 +9,10 @@ window.MotdView = Backbone.View.extend({
 	render: function () {
 		var raw = this.model.toJSON();
 		raw.text = markdown.toHTML(raw.text);
+		var start = new Date(raw.startdate);
+		var end = new Date(raw.enddate);
+		raw.start = start.getDate() + "." + (start.getMonth() + 1) + "." + start.getFullYear();
+		raw.end = end.getDate() + "." + (end.getMonth() + 1) + "." + end.getFullYear();
 		$(this.el).html(this.template(raw));
 		return this;
 	},
@@ -17,10 +21,10 @@ window.MotdView = Backbone.View.extend({
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
 	deleteMotd: function () {
-		var me = this;
-		motdService.deleteMotd(this.model.attributes.motdkey, {
+		var motd = this.model.attributes;
+		motdService.deleteMotd(motd.motdkey, {
 			success: function () {
-				window.rootView.model = _.without(window.rootView.model, me.model.attributes);
+				window.rootView.model = _.without(window.rootView.model, motd);
 				window.rootView.render();
 			},
 			error: function () {

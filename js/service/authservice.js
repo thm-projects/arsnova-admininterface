@@ -25,6 +25,17 @@ var AuthService = function () {
 					options.error();
 				}
 			});
-		}
+		},
+		logout: function (options) {
+			$.ajax({
+				url: "api/auth/logout",
+				type: 'GET',
+				success: function (data) {
+					$.removeCookie("JSESSIONID", {path: "/"});
+					app.initialize();
+					app.navigate("/home", true);
+				},
+			});
+		},
 	}
 };

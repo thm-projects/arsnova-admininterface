@@ -4,14 +4,17 @@
 .expanded-model{
 	display: none;
 }
+.models{
+	margin-bottom: 30px;
+}
+.model-container{
+	margin-top: -10px;
+}
 .tools-bar{
 }
 .model-text{
 	margin-top: 10px;
 }
-.model-container{
-	margin-top: -10px;
-}
-.models{
-	margin-bottom: 30px;
+.model-meta{
+	margin-top: 10px;
 }

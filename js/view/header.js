@@ -11,15 +11,7 @@ window.HeaderView = Backbone.View.extend({
 		return this;
 	},
 	logout: function () {
-		var req = $.ajax({
-			url: "api/auth/logout",
-			type: 'GET',
-			success: function (data) {
-				$.removeCookie("JSESSIONID", {path: "/"});
-				app.initialize();
-				app.navigate("/", true);
-			}
-		});
+		authService.logout();
 	},
 	enterSession: function (e) {
 		e.preventDefault();
