@@ -9,7 +9,9 @@ window.SessionView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		$(this.el).html(this.template(this.model.toJSON()));
+		var raw = this.model.toJSON();
+		$.extend(raw, i18n);
+		$(this.el).html(this.template(raw));
 		return this;
 	},
 	lectureQuestions: function () {

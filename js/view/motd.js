@@ -13,6 +13,7 @@ window.MotdView = Backbone.View.extend({
 		var end = new Date(raw.enddate);
 		raw.start = start.getDate() + "." + (start.getMonth() + 1) + "." + start.getFullYear();
 		raw.end = end.getDate() + "." + (end.getMonth() + 1) + "." + end.getFullYear();
+		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
 		return this;
 	},

@@ -70,5 +70,6 @@ var AppRouter = Backbone.Router.extend({
 				//show error nicely. but not now
 			}
 		});
-	}
+	},
+
 });

@@ -8,7 +8,7 @@
 	<div class="panel-body expanded-model">
 		<div class="tools-bar">
 			<button type="button" class="btn btn-default js-get-answers" aria-label="Left Align">
-				Answers
+				<%= lang_answers %>
 			</button>
 			<button type="button" class="btn btn-default js-get-possibleanswers" aria-label="Left Align">
 				possibleAnswers
@@ -19,6 +19,12 @@
 			<button type="button" class="btn btn-default js-delete-model" aria-label="Left Align">
 				<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
+		</div>
+		<div class="model-meta">
+			<div class="row">
+				<div class="col-sm-2">Questiontype</div>
+				<div class="col-sm-10"><%= questionType %></div>
+			</div>
 		</div>
 		<div class="model-text">
 			<%= text %>

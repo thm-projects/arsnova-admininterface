@@ -6,7 +6,7 @@ window.LoginView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		$(this.el).html(this.template());
+		$(this.el).html(this.template(i18n));
 		return this;
 	},
 	login: function () {
