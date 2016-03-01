@@ -2,6 +2,7 @@ i18n_pack = {
 	"en": {
 		lang_username: "Username",
 		lang_password: "Password",
+		lang_login: "Login",
 		lang_logout: "Logout",
 		lang_enter: "Enter",
 		lang_answers: "Answers",
