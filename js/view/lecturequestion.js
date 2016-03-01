@@ -15,6 +15,9 @@ window.LectureQuestionView = Backbone.View.extend({
 		raw.text = markdown.toHTML(raw.text);
 		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
+		if(this.model.attributes.questionType === "grid") {
+			$('.js-get-possibleanswers', this.el).hide();
+		}
 		return this;
 	},
 	toggleExpand: function () {
