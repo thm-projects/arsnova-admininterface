@@ -42,7 +42,7 @@ window.LectureQuestionView = Backbone.View.extend({
     var time = new Date();
     var timestring = time.getDate() + "_" + (time.getMonth() + 1) + "_" + time.getFullYear();
     a.href = 'data:' + exportData;
-    a.download = this.model.attributes.subject + "-" + timestring + ".json";
+    a.download = encodeURIComponent(this.model.attributes.subject) + "-" + timestring + ".json";
     a.innerHTML = '';
     event.target.appendChild(a);
     if (this.hasExport) {
