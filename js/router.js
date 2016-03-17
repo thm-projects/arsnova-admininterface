@@ -45,7 +45,7 @@ var AppRouter = Backbone.Router.extend({
 	showLectureQuestions: function (sessionkey) {
 		skillQuestionService.getLectureQuestionsForSession(sessionkey, {
 			success: function (data) {
-				this.lectureQuestionOverView = new LectureQuestionOverView({model: data});
+				this.lectureQuestionOverView = new SkillQuestionOverView({model: data});
 				$('.maintpl').html(this.lectureQuestionOverView.el);
 			},
 			error: function () {
