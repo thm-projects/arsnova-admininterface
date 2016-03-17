@@ -37,6 +37,21 @@ window.LectureQuestionView = Backbone.View.extend({
 		}
 	},
 	getRaw: function () {
+    var exportData = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.model.attributes));
+    var a = document.createElement('a');
+    var time = new Date();
+    var timestring = time.getDate() + "_" + (time.getMonth() + 1) + "_" + time.getFullYear();
+    a.href = 'data:' + exportData;
+    a.download = this.model.attributes.subject + "-" + timestring + ".json";
+    a.innerHTML = '';
+    event.target.appendChild(a);
+    if (this.hasExport) {
+			this.hasExport = false;
+    }
+    else {
+        this.hasExport = true;
+        a.click();
+    }
 	},
 	deleteQuestion: function () {
 		var htmlElement = $(this.el);
