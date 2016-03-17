@@ -45,8 +45,8 @@ var AppRouter = Backbone.Router.extend({
 	showLectureQuestions: function (sessionkey) {
 		skillQuestionService.getLectureQuestionsForSession(sessionkey, {
 			success: function (data) {
-				this.lectureQuestionOverView = new SkillQuestionOverView({model: data});
-				$('.maintpl').html(this.lectureQuestionOverView.el);
+				this.skillQuestionOverView = new SkillQuestionOverView({model: data});
+				$('.maintpl').html(this.skillQuestionOverView.el);
 			},
 			error: function () {
 				//show error nicely. but not now
@@ -54,7 +54,15 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showPreparationQuestions: function (sessionkey) {
-
+		skillQuestionService.getPreparationQuestionsForSession(sessionkey, {
+			success: function (data) {
+				this.skillQuestionOverView = new SkillQuestionOverView({model: data});
+				$('.maintpl').html(this.skillQuestionOverView.el);
+			},
+			error: function () {
+				//show error nicely. but not now
+			}
+		});
 	},
 	showInterposedQuestions: function (sessionkey) {
 
