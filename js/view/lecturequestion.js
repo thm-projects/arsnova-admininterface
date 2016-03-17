@@ -11,7 +11,6 @@ window.LectureQuestionView = Backbone.View.extend({
 	},
 	render: function () {
 		var raw = this.model.toJSON();
-		console.log(raw);
 		raw.text = markdown.toHTML(raw.text);
 		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
@@ -40,6 +39,14 @@ window.LectureQuestionView = Backbone.View.extend({
 	getRaw: function () {
 	},
 	deleteQuestion: function () {
-		
+		var htmlElement = $(this.el);
+		skillQuestionService.deleteSkillQuestion(this.model.attributes._id, {
+			success: function () {
+				htmlElement.hide();
+			},
+			error: function () {
+				//noooop
+			}
+		});
 	},
 });

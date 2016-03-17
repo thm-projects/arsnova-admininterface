@@ -11,5 +11,16 @@ var SkillQuestionService = function () {
 				}
 			});
 		},
+		deleteSkillQuestion: function (questionId, options) {
+			$.ajax({
+				url: "api/lecturerquestion/" + questionId,
+				type: "DELETE",
+				success: options.success,
+				error: function () {
+					console.log("error deleting skill question");
+					options.error();
+				}
+			});
+		},
 	}
 };
