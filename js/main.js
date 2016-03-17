@@ -8,6 +8,8 @@ utils.loadTemplate([
 	'MotdView',
 	'MotdOverView',
 	'PossibleAnswerView',
+	'AnswerOverView',
+	'AnswerView',
 ], function () {
 	app = new AppRouter();
 	authService = new AuthService();

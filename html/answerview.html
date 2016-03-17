@@ -1,0 +1,30 @@
+<div class="panel panel-default model-container">
+  <div class="panel-heading js-expand-model">
+    <h3 class="panel-title">
+			Titel!
+			<span class="pull-right indicator glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+		</h3>
+  </div>
+	<div class="panel-body expanded-model">
+		<div class="tools-bar">
+			<button type="button" class="btn btn-default js-get-answers" aria-label="Left Align">
+				<%= lang_user %>
+			</button>
+			<button type="button" class="btn btn-default js-delete-model" aria-label="Left Align">
+				<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div class="possibleanswers">
+		</div>
+		<div class="model-meta">
+			<div class="row">
+				<div class="col-sm-2">Questiontype</div>
+				<div class="col-sm-10"><%= questionType %></div>
+			</div>
+		</div>
+		<div class="model-text">
+			<%= text %>
+		</div>
+		<img class="img-responsive" src='<%= image %>' />
+	</div>
+</div>

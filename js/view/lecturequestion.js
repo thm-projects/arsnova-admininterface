@@ -25,7 +25,7 @@ window.LectureQuestionView = Backbone.View.extend({
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
 	getAnswers: function () {
-
+		app.navigate(Backbone.history.getFragment() + this.model.attributes._id + "/answers", true);
 	},
 	getPossibleAnswers: function (e) {
 		if (!this.possibleAnswerOverView) {
@@ -40,6 +40,6 @@ window.LectureQuestionView = Backbone.View.extend({
 	getRaw: function () {
 	},
 	deleteQuestion: function () {
-
+		
 	},
 });

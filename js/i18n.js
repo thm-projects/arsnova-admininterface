@@ -14,6 +14,8 @@ i18n_pack = {
 		lang_sessionkey: "Sessionkey",
 		lang_preparationQuestions: "Preparation questions",
 		lang_interposedQuestions: "Interposed questions",
+		lang_answers: "Answers",
+		lang_user: "User",
 	}
 }
 window.i18n = i18n_pack["en"];
