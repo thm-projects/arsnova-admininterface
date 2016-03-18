@@ -11,5 +11,16 @@ var AnswerService = function () {
 				}
 			});
 		},
+		deleteAnswer: function (questionId, answerId, options) {
+			$.ajax({
+				url: "api/lecturerquestion/" + questionId + "/answer/" + answerId,
+				type: "DELETE",
+				success: options.success,
+				error: function () {
+					console.log("error deleting answer");
+					options.error();
+				}
+			});
+		},
 	}
 };

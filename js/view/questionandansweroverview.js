@@ -8,6 +8,7 @@ window.QuestionAndAnswerOverView = Backbone.View.extend({
 		this.skillQuestion = new SkillQuestion();
 		this.skillQuestion.attributes = this.model;
 		this.skillQuestionView = new SkillQuestionView({model: this.skillQuestion});
+		$(".js-get-answers", this.skillQuestionView.el).hide();
 		$("#skillquestion", this.el).append(this.skillQuestionView.el);
 		var abstentionCount = 0;
 		for (var i = 0; i < this.model.answers.length; i++) {
