@@ -8,7 +8,7 @@ window.SkillQuestionOverView = Backbone.View.extend({
 			var question = new SkillQuestion();
 			question.attributes = this.model[i];
 			var skillQuestionView = new SkillQuestionView({model: question});
-			$(this.el).append(skillQuestionView.render().el);
+			$(".models", this.el).append(skillQuestionView.render().el);
 		}
 		return this;
 	},

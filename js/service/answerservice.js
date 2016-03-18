@@ -1,12 +1,12 @@
 var AnswerService = function () {
 	return {
-		getLectureQuestionsForSession: function (key, options) {
+		getAnswersForSkillQuestion: function (questionId, options) {
 			$.ajax({
-				url: "api/lecturerquestion/?lecturequestionsonly=true&requestImageData=true&sessionkey=" + key,
+				url: "api/lecturerquestion/" + questionId + "/answer/?all=true",
 				type: 'GET',
 				success: options.success,
 				error: function () {
-					console.log("error fetching lecture questions for sessionkey " + key);
+					console.log("error fetching answers for skillquestion w/ id: " + questionId);
 					options.error();
 				}
 			});

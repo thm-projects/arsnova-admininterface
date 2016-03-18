@@ -15,6 +15,8 @@ i18n_pack = {
 		lang_preparationQuestions: "Preparation questions",
 		lang_interposedQuestions: "Interposed questions",
 		lang_answers: "Answers",
+		lang_totalAnswerCount: "Total Number of answers:",
+		lang_abstentionCount: "Number of abstentions:",
 		lang_user: "User",
 	}
 }

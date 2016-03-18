@@ -6,6 +6,8 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/lecturequestions": "showLectureQuestions",
 		"session/:key/preparationquestions": "showPreparationQuestions",
 		"session/:key/interposedquestions": "showInterposedQuestions",
+		"skillquestion/:id": "showSkillQuestionAndAnswers",
+		"skillquestion/:id/answers": "showSkillQuestionAnswers",
 		"motd": "getAdminMotds",
 	},
 	initialize: function () {
@@ -66,6 +68,36 @@ var AppRouter = Backbone.Router.extend({
 	},
 	showInterposedQuestions: function (sessionkey) {
 
+	},
+	showSkillQuestionAndAnswers: function (id) {
+		var skillQuestion = null;
+		skillQuestionService.getSkillQuestion(id, {
+			success: function (data) {
+				skillQuestion = data;
+			},
+			error: function () {
+			}
+		});
+		answerService.getAnswersForSkillQuestion(id, {
+			success: function (answerData) {
+				skillQuestion.answers = answerData;
+				this.questionAndAnswerOverView = new QuestionAndAnswerOverView({model: skillQuestion});
+				$('.maintpl').html(this.questionAndAnswerOverView.el);
+			},
+			error: function () {
+			}
+		});
+	},
+	showSkillQuestionAnswers: function (id) {
+		answerService.getAnswersForSkillQuestion(id, {
+			success: function (data) {
+				this.answerOverView = new AnswerOverView({model: data});
+				$('.maintpl').html(this.answerOverView.el);
+			},
+			error: function () {
+
+			}
+		});
 	},
 	getAdminMotds: function () {
 		motdService.getAdminMotds({

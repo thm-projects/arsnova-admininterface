@@ -33,5 +33,16 @@ var SkillQuestionService = function () {
 				}
 			});
 		},
+		getSkillQuestion: function (questionId, options) {
+			$.ajax({
+				url: "api/lecturerquestion/" + questionId,
+				type: "GET",
+				success: options.success,
+				error: function () {
+					console.log("error fetching skill question w/ id: " + questionId);
+					options.error();
+				}
+			});
+		},
 	}
 };

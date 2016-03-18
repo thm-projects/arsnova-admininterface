@@ -8,7 +8,7 @@ window.MotdOverView = Backbone.View.extend({
 			var motd = new Motd();
 			motd.attributes = this.model[i];
 			var motdView = new MotdView({model: motd});
-			$(this.el).append(motdView.render().el);
+			$(".models", this.el).append(motdView.render().el);
 		}
 		return this;
 	},

@@ -11,10 +11,11 @@ window.SkillQuestionView = Backbone.View.extend({
 	},
 	render: function () {
 		var raw = this.model.toJSON();
+		raw.possibleAnswerCount = this.model.attributes.possibleAnswers.length;
 		raw.text = markdown.toHTML(raw.text);
 		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
-		if(this.model.attributes.questionType === "grid") {
+		if((raw.possibleAnswerCount == 0) || (this.model.attributes.questionType === "grid")) {
 			$('.js-get-possibleanswers', this.el).hide();
 		}
 		return this;
@@ -24,7 +25,7 @@ window.SkillQuestionView = Backbone.View.extend({
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
 	getAnswers: function () {
-		app.navigate(Backbone.history.getFragment() + this.model.attributes._id + "/answers", true);
+		app.navigate("skillquestion/" + this.model.attributes._id, true);
 	},
 	getPossibleAnswers: function (e) {
 		if (!this.possibleAnswerOverView) {
