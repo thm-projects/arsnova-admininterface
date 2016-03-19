@@ -12,12 +12,13 @@ utils.loadTemplate([
 	'AnswerView',
 	'QuestionAndAnswerOverView',
 ], function () {
-	app = new AppRouter();
 	authService = new AuthService();
 	motdService = new MotdService();
 	sessionService = new SessionService();
 	skillQuestionService = new SkillQuestionService();
 	answerService = new AnswerService();
+	app = new AppRouter();
+	authService.whoami();
 	Backbone.history.start();
 	if(!$.cookie('JSESSIONID')) {
 		app.navigate("/", true);
