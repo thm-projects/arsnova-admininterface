@@ -1,7 +1,9 @@
 var AppRouter = Backbone.Router.extend({
 	routes: {
 		"": "login",
-		"home": "login",
+		"login": "login",
+		"imprint": "imprint",
+		"home": "home",
 		"session/:key": "enterSession",
 		"session/:key/lecturequestions": "showLectureQuestions",
 		"session/:key/preparationquestions": "showPreparationQuestions",
@@ -19,16 +21,24 @@ var AppRouter = Backbone.Router.extend({
 			this.headerView = new HeaderView();
 			$('.headtpl').html(this.headerView.el);
 		}
+		this.footerView = new FooterView();
+		$('.foottpl').html(this.footerView.el);
 	},
 	login: function () {
-		if (!$.cookie('JSESSIONID')) {
-			this.loginView = new LoginView();
-			$('.maintpl').html(this.loginView.el);
-		}
-		else {
-			authService.whoami();
+		this.loginView = new LoginView();
+		$('.maintpl').html(this.loginView.el);
+	},
+	imprint: function () {
+		$('.maintpl').html(window.Templates["ImprintView"]);
+	},
+	home: function () {
+		if ($.cookie('JSESSIONID')) {
 			this.homeView = new HomeView();
 			$('.maintpl').html(this.homeView.el);
+		}
+		else {
+			this.loginView = new LoginView();
+			$('.maintpl').html(this.loginView.el);
 		}
 	},
 	enterSession: function (sessionkey) {

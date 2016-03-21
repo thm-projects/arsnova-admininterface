@@ -4,6 +4,7 @@ window.utils = {
 	loadTemplate: function(views, callback) {
 
 		var deferreds = [];
+		window.Templates = [];
 
 		$.each(views, function(index, view) {
 			if (window[view]) {
@@ -11,6 +12,9 @@ window.utils = {
 					window[view].prototype.template = _.template(data);
 				}));
 			} else {
+				deferreds.push($.get('html/'+view.toLowerCase()+'.html', function(data) {
+					window.Templates[view] = _.template(data);
+				}));
 			}
 		});
 

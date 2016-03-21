@@ -1,5 +1,7 @@
 utils.loadTemplate([
 	'HeaderView',
+	'FooterView',
+	'ImprintView',
 	'LoginView',
 	'HomeView',
 	'SessionView',
@@ -20,7 +22,4 @@ utils.loadTemplate([
 	app = new AppRouter();
 	authService.whoami();
 	Backbone.history.start();
-	if(!$.cookie('JSESSIONID')) {
-		app.navigate("/", true);
-	}
 });

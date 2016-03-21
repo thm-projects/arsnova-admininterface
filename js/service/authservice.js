@@ -9,7 +9,9 @@ var AuthService = function () {
 				error: function () {
 					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
-					app.navigate("/", true);
+					if (Backbone.history.getFragment() !== "imprint") {
+						app.navigate("login", true);
+					}
 				}
 			});
 		},
@@ -31,9 +33,10 @@ var AuthService = function () {
 				url: "api/auth/logout",
 				type: 'GET',
 				success: function (data) {
+					console.log("fire");
 					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
-					app.navigate("/home", true);
+					app.navigate("/login", true);
 				},
 			});
 		},

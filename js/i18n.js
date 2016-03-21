@@ -1,5 +1,8 @@
 i18n_pack = {
 	"en": {
+		lang_imprint: "Imprint",
+		lang_arsnova_link: "What is ARSnova?",
+		lang_home_link: "Home",
 		lang_username: "Username",
 		lang_password: "Password",
 		lang_login: "Login",
