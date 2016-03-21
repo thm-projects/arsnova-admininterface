@@ -7,6 +7,9 @@
 .small-top-margin{
 	margin-top:30px;
 }
+.sessionkeyinput{
+	width:30px;
+}
 .expanded-model{
 	display: none;
 }
@@ -27,4 +30,9 @@
 }
 .possibleanswers{
 	display: none;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }

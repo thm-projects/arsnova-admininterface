@@ -33,7 +33,6 @@ var AuthService = function () {
 				url: "api/auth/logout",
 				type: 'GET',
 				success: function (data) {
-					console.log("fire");
 					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
 					app.navigate("/login", true);
