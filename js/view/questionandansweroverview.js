@@ -3,7 +3,6 @@ window.QuestionAndAnswerOverView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		console.log(this.model);
 		$(this.el).html(this.template(i18n));
 		this.skillQuestion = new SkillQuestion();
 		this.skillQuestion.attributes = this.model;

@@ -10,7 +10,6 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/interposedquestions": "showInterposedQuestions",
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
-		"motd": "getAdminMotds",
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
@@ -33,8 +32,16 @@ var AppRouter = Backbone.Router.extend({
 	},
 	home: function () {
 		if ($.cookie('JSESSIONID')) {
-			this.homeView = new HomeView();
-			$('.maintpl').html(this.homeView.el);
+			motdService.getAdminMotds({
+				success: function (data) {
+					this.homeView = new HomeView({model:data});
+					$('.maintpl').html(this.homeView.el);
+				},
+				error: function () {
+					this.homeView = new HomeView();
+					$('.maintpl').html(this.homeView.el);
+				}
+			});
 		}
 		else {
 			this.loginView = new LoginView();
@@ -109,17 +116,4 @@ var AppRouter = Backbone.Router.extend({
 			}
 		});
 	},
-	getAdminMotds: function () {
-		motdService.getAdminMotds({
-			success: function (data) {
-				this.motdView = new MotdOverView({model: data});
-				$('.maintpl').html(this.motdView.el);
-				window.rootView = this.motdView;
-			},
-			error: function () {
-				//show error nicely. but not now
-			}
-		});
-	},
-
 });

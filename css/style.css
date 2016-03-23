@@ -20,7 +20,18 @@
 .model-container{
 	margin-top: -10px;
 }
-.tools-bar{
+.overview-tools-bar{
+	padding-left: 15px;
+	margin:0px;
+	border-bottom: 1px solid grey;
+}
+.overview-tools-bar-ent{
+	padding:5px;
+	text-align: center;
+	border-right: 1px solid grey;
+}
+.overview-tools-bar-ent:hover{
+	background-color: #EEEEEE;
 }
 .model-text{
 	margin-top: 10px;
@@ -35,4 +46,5 @@
     display: inline-block;
     vertical-align: middle;
     float: none;
+		height: 30px;
 }
