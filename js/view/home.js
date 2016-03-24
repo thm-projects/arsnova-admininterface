@@ -25,9 +25,21 @@ window.HomeView = Backbone.View.extend({
 
 	},
 	deleteAllMotds: function (e) {
+		var error = null;
+		for (var i = 0; i < this.model.length; i++) {
+			if (!error) {
+				motdService.deleteMotd(this.model[i]._id, {
+					success: function () {
 
+					},
+					error: function () {
+
+					}
+				});
+			}
+		}
 	},
 	newMotd: function (e) {
-
+		app.navigate("/motd/new", true);
 	},
 });

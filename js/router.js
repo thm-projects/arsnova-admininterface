@@ -10,6 +10,7 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/interposedquestions": "showInterposedQuestions",
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
+		"motd/new": "newMotd",
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
@@ -116,4 +117,9 @@ var AppRouter = Backbone.Router.extend({
 			}
 		});
 	},
+	newMotd: function () {
+		var motd = new Motd();
+		this.newMotd = new MotdEditView({model: motd});
+		$('.maintpl').html(this.newMotd.el);
+	}
 });

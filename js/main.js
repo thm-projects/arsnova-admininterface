@@ -9,6 +9,7 @@ utils.loadTemplate([
 	'SkillQuestionOverView',
 	'MotdView',
 	'MotdOverView',
+	'MotdEditView',
 	'PossibleAnswerView',
 	'AnswerOverView',
 	'AnswerView',
