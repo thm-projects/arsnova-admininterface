@@ -10,10 +10,8 @@ window.HomeView = Backbone.View.extend({
 	},
 	render: function () {
 		$(this.el).html(this.template(i18n));
-		if (this.model) {
-			this.motdOverView = new MotdOverView({model: this.model});
-			$("#adminmotds", this.el).append(this.motdOverView.el);
-		}
+		this.motdOverView = new MotdOverView({model: this.model});
+		$("#adminmotds", this.el).append(this.motdOverView.el);
 		return this;
 	},
 	enterSession: function (e) {
@@ -24,22 +22,29 @@ window.HomeView = Backbone.View.extend({
 	enterUser: function (e) {
 
 	},
+	newMotd: function (e) {
+		$("#homeview", this.el).hide();
+		var emptyMotd = new Motd();
+		this.motdEditView = new MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: this.motdOverView});
+		$("#homeAdditional", this.el).append(this.motdEditView.el);
+	},
 	deleteAllMotds: function (e) {
-		var error = null;
-		for (var i = 0; i < this.model.length; i++) {
-			if (!error) {
-				motdService.deleteMotd(this.model[i]._id, {
-					success: function () {
-
-					},
-					error: function () {
-
-					}
-				});
-			}
+		var motdOverEl = this.motdOverView.el;
+		var removeElem = function (motdkey) {
+			motdService.deleteMotd(motdkey, {
+				success: function () {
+					$("#" + motdkey, motdOverEl).hide();
+				},
+				error: function () {
+				}
+			});
+		};
+		for (var i = 0; i < this.motdOverView.model.length; i++) {
+			removeElem(this.motdOverView.model[i].motdkey);
 		}
 	},
-	newMotd: function (e) {
-		app.navigate("/motd/new", true);
+	afterEditView: function (motd) {
+		$("#homeview", this.el).show();
+		$("#homeAdditional", this.el).empty();
 	},
 });

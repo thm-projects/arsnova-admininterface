@@ -2,8 +2,10 @@ window.MotdEditView = Backbone.View.extend({
 	events: {
 		"click #motd_submit": "saveMotd",
 	},
-	initialize: function () {
+	initialize: function (options) {
 		this.render();
+		this.callback = options.callback;
+		this.motdOverView = options.motdOverView;
 	},
 	render: function () {
 		var timeForString = new Date();
@@ -33,9 +35,13 @@ window.MotdEditView = Backbone.View.extend({
 			enddate: this.getTimestampByString($('#motd_enddate').val()).toString(),
 			audience: $('#motd_audience')[0].value,
 		};
+		var callback = this.callback;
+		var motdOverView = this.motdOverView;
 		var valid = this.model.save(attrs, {
 			success: function (data) {
-				console.log(data);
+				motdOverView.model.push(data.attributes);
+				motdOverView.render();
+				callback(data);
 			}
 		});
 		if (!valid) {

@@ -3,8 +3,9 @@ window.MotdView = Backbone.View.extend({
 		"click .js-expand-model": "toggleExpand",
 		"click .js-delete-model": "deleteMotd",
 	},
-	initialize: function () {
-
+	initialize: function (options) {
+		this.render();
+		this.parentView = options.parentView;
 	},
 	render: function () {
 		var raw = this.model.toJSON();
@@ -22,11 +23,13 @@ window.MotdView = Backbone.View.extend({
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
 	deleteMotd: function () {
-		var motd = this.model.attributes;
-		motdService.deleteMotd(motd.motdkey, {
+		var motd = this.model;
+		var parentView = this.parentView;
+		var el = this.el;
+		motdService.deleteMotd(motd.attributes.motdkey, {
 			success: function () {
-				window.rootView.model = _.without(window.rootView.model, motd);
-				window.rootView.render();
+				parentView.model = _.without(parentView.model, motd.attributes);
+				$(el).hide();
 			},
 			error: function () {
 			}
