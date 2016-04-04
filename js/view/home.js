@@ -10,8 +10,8 @@ window.HomeView = Backbone.View.extend({
 	},
 	render: function () {
 		$(this.el).html(this.template(i18n));
-		this.motdOverView = new MotdOverView({model: this.model});
-		$("#adminmotds", this.el).append(this.motdOverView.el);
+		window.app.motdOverView = new MotdOverView({model: this.model});
+		$("#adminmotds", this.el).append(window.app.motdOverView.el);
 		return this;
 	},
 	enterSession: function (e) {
@@ -25,26 +25,34 @@ window.HomeView = Backbone.View.extend({
 	newMotd: function (e) {
 		$("#homeview", this.el).hide();
 		var emptyMotd = new Motd();
-		this.motdEditView = new MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: this.motdOverView});
+		this.motdEditView = new MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: window.app.motdOverView});
 		$("#homeAdditional", this.el).append(this.motdEditView.el);
 	},
 	deleteAllMotds: function (e) {
-		var motdOverEl = this.motdOverView.el;
-		var removeElem = function (motdkey) {
-			motdService.deleteMotd(motdkey, {
+		var motdOverEl = window.app.motdOverView.el;
+		var motdCollection = window.app.motdOverView.model;
+		var afterRemove = function (motdCol) {
+			window.app.motdOverView.model = motdCol;
+		};
+		var removeElem = function (motd) {
+			motdService.deleteMotd(motd.motdkey, {
 				success: function () {
-					$("#" + motdkey, motdOverEl).hide();
+					$("#" + motd.motdkey, motdOverEl).hide();
+					motdCollection =_.without(motdCollection, motd);
+					afterRemove(motdCollection);
 				},
 				error: function () {
 				}
 			});
 		};
-		for (var i = 0; i < this.motdOverView.model.length; i++) {
-			removeElem(this.motdOverView.model[i].motdkey);
+		for (var i = 0; i < window.app.motdOverView.model.length; i++) {
+			removeElem(window.app.motdOverView.model[i]);
 		}
 	},
 	afterEditView: function (motd) {
 		$("#homeview", this.el).show();
 		$("#homeAdditional", this.el).empty();
+		$("#" + motd.attributes.motdkey).children(".expanded-model").toggle();
+		$("#" + motd.attributes.motdkey).find('.indicator').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
 	},
 });
