@@ -16,6 +16,6 @@ window.HeaderView = Backbone.View.extend({
 	enterSession: function (e) {
 		e.preventDefault();
 		var sessionkey = $('#inputsessionkey').val();
-		app.navigate("/session/" + sessionkey);
+		app.navigate("/session/" + sessionkey, true);
 	}
 });
