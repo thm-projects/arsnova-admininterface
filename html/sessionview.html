@@ -1,6 +1,22 @@
 <div class="container">
-	<h1><%= name %></h1>
-	<div class="panel panel-default">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="page-header text-center">
+				<h1><%= name %></h1>
+			</div>
+		</div>
+	</div>
+	<div class="session-toolbar">
+			<div type="button" class="btn btn-default js-delete-all" aria-label="Left Align">
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+				<%= lang_delete_all %>
+			</div>
+			<div type="button" class="btn btn-default js-export" aria-label="Left Align">
+				<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
+				<%= lang_export %>
+			</div>
+	</div>
+	<div class="panel panel-default small-top-margin">
 	  <div class="panel-body js-show-lectureQuestions">
 	    <%= lang_lectureQuestions %>
 	  </div>

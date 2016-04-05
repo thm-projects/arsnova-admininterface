@@ -12,6 +12,7 @@ i18n_pack = {
 		lang_logout: "Logout",
 		lang_enter: "Enter",
 		lang_delete_all: "Delete all",
+		lang_export: "Export",
 		lang_add_new: "Add new",
 		lang_answers: "Answers",
 		lang_lectureQuestions: "Lecture questions",

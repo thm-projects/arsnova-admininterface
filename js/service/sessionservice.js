@@ -11,5 +11,16 @@ var SessionService = function () {
 				}
 			});
 		},
+		export: function (key, options) {
+			$.ajax({
+				url: "api/session/export?sessionkey=" + key + "&withAnswerStatistics=true&withFeedbackQuestions=true",
+				type: "GET",
+				success: options.success,
+				error: function () {
+					console.log("error export session w/ key: " + key);
+					options.error();
+				}
+			});
+		},
 	}
 };
