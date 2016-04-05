@@ -17,7 +17,7 @@ window.HomeView = Backbone.View.extend({
 	enterSession: function (e) {
 		e.preventDefault();
 		var sessionkey = $('#homeinputsessionkey').val();
-		app.navigate("/session/" + sessionkey);
+		app.navigate("/session/" + sessionkey, true);
 	},
 	enterUser: function (e) {
 
