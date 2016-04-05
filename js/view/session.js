@@ -29,7 +29,13 @@ window.SessionView = Backbone.View.extend({
 		app.navigate("/motd", true);
 	},
 	deleteAll: function () {
-
+		sessionService.delete(sessionStorage.getItem("sessionkey"), {
+			success: function (data) {
+				app.navigate("/home", true);
+			},
+			error: function () {
+			}
+		});
 	},
 	export: function () {
 		var successFunction = this.writeExportDataToFile;

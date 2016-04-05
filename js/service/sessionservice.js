@@ -22,5 +22,16 @@ var SessionService = function () {
 				}
 			});
 		},
+		delete: function (key, options) {
+			$.ajax({
+				url: "api/session/" + key,
+				type: "DELETE",
+				success: options.success,
+				error: function () {
+					console.log("error deleting session w/ key: " + key);
+					options.error();
+				}
+			});
+		},
 	}
 };
