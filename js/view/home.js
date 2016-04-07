@@ -31,15 +31,12 @@ window.HomeView = Backbone.View.extend({
 	deleteAllMotds: function (e) {
 		var motdOverEl = window.app.motdOverView.el;
 		var motdCollection = window.app.motdOverView.model;
-		var afterRemove = function (motdCol) {
-			window.app.motdOverView.model = motdCol;
-		};
 		var removeElem = function (motd) {
 			motdService.deleteMotd(motd.motdkey, {
 				success: function () {
 					$("#" + motd.motdkey, motdOverEl).hide();
 					motdCollection =_.without(motdCollection, motd);
-					afterRemove(motdCollection);
+						window.app.motdOverView.model = motdCollection;
 				},
 				error: function () {
 				}
