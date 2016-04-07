@@ -1,10 +1,12 @@
 <div class="row">
 	<div class="col-sm-12">
-		<img class="arsnova-logo img-responsive" src="/public/arsnova-small.png"/>
-		<h1 class="text-center">Admin Interface</h1>
+		<div class="page-header">
+			<img class="arsnova-logo img-responsive" src="/public/arsnova-small.png"/>
+			<h1 class="text-center">Admin Interface</h1>
+		</div>
 	</div>
 	<div class="col-sm-12">
-		<form class="smal--top-margin">
+		<form class="small-top-margin">
 		  <div class="form-group row">
 		    <label for="inputEmail3" class="col-sm-2 form-control-label"><%= lang_username %></label>
 		    <div class="col-sm-10">
@@ -17,7 +19,7 @@
 		      <input type="password" class="form-control" id="inputpassword" placeholder="...">
 		    </div>
 		  </div>
-			<button type="button" class="js-login btn btn-success submit-button"><%= lang_login %></button>
+			<input type="submit" value="<%= lang_login %>" class="js-login btn btn-secondary submit-button">
 		</form>
 	</div>
 </div>
