@@ -36,7 +36,7 @@ window.HomeView = Backbone.View.extend({
 				success: function () {
 					$("#" + motd.motdkey, motdOverEl).hide();
 					motdCollection =_.without(motdCollection, motd);
-						window.app.motdOverView.model = motdCollection;
+					window.app.motdOverView.model = motdCollection;
 				},
 				error: function () {
 				}

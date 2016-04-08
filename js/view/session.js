@@ -5,6 +5,8 @@ window.SessionView = Backbone.View.extend({
 		"click .js-show-interposedQuestions": "interposedQuestions",
 		"click .js-show-motds": "motds",
 		"click .js-delete-all": "deleteAll",
+		"click .js-toggle-change-user-form": "toggleChangeUserForm",
+		"click .js-change-user": "changeUser",
 		"click .js-export": "export",
 	},
 	initialize: function () {
@@ -32,6 +34,23 @@ window.SessionView = Backbone.View.extend({
 		sessionService.delete(sessionStorage.getItem("sessionkey"), {
 			success: function (data) {
 				app.navigate("/home", true);
+			},
+			error: function () {
+			}
+		});
+	},
+	toggleChangeUserForm: function () {
+		$('.dont-display', this.el).toggle();
+	},
+	changeUser: function (e) {
+		e.preventDefault();
+		var newUsername = $('#newusername').val();
+		var sessionModel = this.model.toJSON();
+		sessionModel.creator = newUsername;
+		sessionService.update(sessionModel, {
+			success: function (data) {
+				console.log("sessionowner changed successfully");
+				$('.dont-display', this.el).toggle();
 			},
 			error: function () {
 			}

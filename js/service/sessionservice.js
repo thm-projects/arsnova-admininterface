@@ -33,5 +33,19 @@ var SessionService = function () {
 				}
 			});
 		},
+		update: function (session, options) {
+			$.ajax({
+				url: "api/session/" + session.keyword,
+				type: "PUT",
+				data: JSON.stringify(session),
+				dataType: "json",
+				contentType: "application/json",
+				success: options.success,
+				error: function () {
+					console.log("error updating session w/ key: " + session.keyword);
+					options.error();
+				}
+			});
+		},
 	}
 };
