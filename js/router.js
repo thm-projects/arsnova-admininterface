@@ -56,6 +56,7 @@ var AppRouter = Backbone.Router.extend({
 				sessionStorage.setItem("sessionkey", sessionkey);
 				this.sessionView = new SessionView({model: session});
 				$('.maintpl').html(this.sessionView.el);
+				this.sessionView.asyncDataLoad();
 			},
 			error: function () {
 				//show error nicely. but not now

@@ -20,6 +20,7 @@ utils.loadTemplate([
 	sessionService = new SessionService();
 	skillQuestionService = new SkillQuestionService();
 	answerService = new AnswerService();
+	interposedQuestionService = new InterposedQuestionService();
 	app = new AppRouter();
 	authService.whoami();
 	Backbone.history.start();

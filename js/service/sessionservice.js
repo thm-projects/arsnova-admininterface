@@ -47,5 +47,26 @@ var SessionService = function () {
 				}
 			});
 		},
+		getCount: function (key, type, options) {
+			var getParamString = "";
+			if (type === "preparation") {
+				getParamString = "&preparationquestionsonly=true";
+			}
+			else if (type === "lecture") {
+				getParamString = "&lecturequestionsonly=true";
+			}
+			else if (type === "flashcard") {
+				getParamString = "&flashcardsonly=true";
+			}
+			$.ajax({
+				url: "api/lecturerquestion/count?sessionkey=" + key + getParamString,
+				type: "GET",
+				success: options.success,
+				error: function () {
+					console.log("error getting skillquestioncount for sesionkey " + key);
+					options.error();
+				}
+			})
+		},
 	}
 };

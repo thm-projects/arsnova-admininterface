@@ -18,6 +18,27 @@ window.SessionView = Backbone.View.extend({
 		$(this.el).html(this.template(raw));
 		return this;
 	},
+	asyncDataLoad: function () {
+		var sessionkey = sessionStorage.getItem("sessionkey");
+		sessionService.getCount(sessionkey, "lecture", {
+			success: function (data) {
+				$("#lecture-question-badge").html(data);
+			},
+			error: function () {}
+		});
+		sessionService.getCount(sessionkey, "preparation", {
+			success: function (data) {
+				$("#preparation-question-badge").html(data);
+			},
+			error: function () {}
+		});
+		interposedQuestionService.getCount(sessionkey, {
+			success: function (data) {
+				$("#interposed-question-badge").html(data);
+			},
+			error: function () {}
+		});
+	},
 	lectureQuestions: function () {
 		app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/lecturequestions", true);
 	},
