@@ -86,7 +86,15 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showInterposedQuestions: function (sessionkey) {
-
+		interposedQuestionService.get(sessionkey, {
+			success: function (data) {
+				this.interposedQuestionOverView = new InterposedQuestionOverView({model: data});
+				$('.maintpl').html(this.interposedQuestionOverView.el);
+			},
+			error: function () {
+				//show error nicely. but not now
+			}
+		});
 	},
 	showSkillQuestionAndAnswers: function (id) {
 		var skillQuestion = null;

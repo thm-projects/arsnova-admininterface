@@ -14,6 +14,8 @@ utils.loadTemplate([
 	'AnswerOverView',
 	'AnswerView',
 	'QuestionAndAnswerOverView',
+	'InterposedQuestionView',
+	'InterposedQuestionOverView',
 ], function () {
 	authService = new AuthService();
 	motdService = new MotdService();
