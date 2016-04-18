@@ -20,6 +20,7 @@ window.SessionView = Backbone.View.extend({
 	},
 	asyncDataLoad: function () {
 		var sessionkey = sessionStorage.getItem("sessionkey");
+		var me = this;
 		sessionService.getCount(sessionkey, "lecture", {
 			success: function (data) {
 				$("#lecture-question-badge").html(data);
@@ -38,18 +39,39 @@ window.SessionView = Backbone.View.extend({
 			},
 			error: function () {}
 		});
+		motdService.getSessionMotds(sessionkey, {
+			success: function (data) {
+				me.motds = data;
+				if (me.motds.length > 0) {
+					sessionStorage.setItem("motds", JSON.stringify(data));
+				}
+				$("#motd-badge").html(me.motds.length);
+			},
+			error: function () {
+				me.motds = [];
+				$("#motd-badge").html(me.motds.length);
+			}
+		});
 	},
 	lectureQuestions: function () {
-		app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/lecturequestions", true);
+		if ($("#lecture-question-badge").val() !== 0) {
+			app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/lecturequestions", true);
+		}
 	},
 	preparationQuestions: function () {
-		app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/preparationquestions", true);
+		if ($("#lecture-question-badge").val() !== 0) {
+			app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/preparationquestions", true);
+		}
 	},
 	interposedQuestions: function () {
-		app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/interposedquestions", true);
+		if ($("#lecture-question-badge").val() !== 0) {
+			app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/interposedquestions", true);
+		}
 	},
 	motds: function () {
-		app.navigate("/motd", true);
+		if (sessionStorage.getItem("motds")) {
+			app.navigate("/session/" + sessionStorage.getItem("sessionkey") + "/motds", true);
+		}
 	},
 	deleteAll: function () {
 		sessionService.delete(sessionStorage.getItem("sessionkey"), {

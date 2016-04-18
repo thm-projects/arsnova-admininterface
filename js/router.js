@@ -8,6 +8,7 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/lecturequestions": "showLectureQuestions",
 		"session/:key/preparationquestions": "showPreparationQuestions",
 		"session/:key/interposedquestions": "showInterposedQuestions",
+		"session/:key/motds": "showSessionMotds",
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
 		"motd/new": "newMotd",
@@ -125,6 +126,23 @@ var AppRouter = Backbone.Router.extend({
 
 			}
 		});
+	},
+	showSessionMotds: function (sessionkey) {
+		var motds = [];
+		if (!sessionStorage.getItem("motds")) {
+			motdService.getSessionMotds(sessionkey, {
+				success: function (data) {
+					sessionStorage.setItem("motds", JSON.stringify(data));
+				},
+				error: function () {
+				}
+			});
+		}
+		if (sessionStorage.getItem("motds")) {
+			motds = JSON.parse(sessionStorage.getItem("motds"));
+		}
+		this.motdOverView = new MotdOverView({model: motds});
+		$('.maintpl').html(this.motdOverView.el);
 	},
 	newMotd: function () {
 		var motd = new Motd();

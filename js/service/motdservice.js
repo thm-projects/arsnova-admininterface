@@ -6,18 +6,18 @@ var MotdService = function () {
 				type: "GET",
 				success: options.success,
 				error: function () {
-					console.log("Error fetching Admin Motds");
+					console.log("Error fetching Admin MotDs");
 					options.error();
 				}
 			});
 		},
 		getSessionMotds: function (key, options) {
 			$.ajax({
-				url: "api/motd/?sessionkey=" + key,
+				url: "api/motd/?adminview=true&sessionkey=" + key,
 				type: "GET",
 				success: options.success,
 				error: function () {
-					console.log("Error fetching Session Motds");
+					console.log("Error fetching Session MotDs");
 					options.error();
 				}
 			});
