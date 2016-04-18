@@ -22,5 +22,15 @@ var InterposedQuestionService = function () {
 				}
 			});
 		},
+		delete: function (id, options) {
+			$.ajax({
+				url: "api/audiencequestion/" + id,
+				type: "DELETE",
+				success: options.success,
+				error: function () {
+					console.log("error deleting interposed question w/ id: " + id);
+				}
+			});
+		},
 	}
 }

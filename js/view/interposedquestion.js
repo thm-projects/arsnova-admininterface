@@ -1,6 +1,7 @@
 window.InterposedQuestionView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
+		"click .js-delete-model": "deleteInterposedQuestion",
 	},
 	initialize: function () {
 
@@ -14,5 +15,14 @@ window.InterposedQuestionView = Backbone.View.extend({
 	toggleExpand: function () {
 		$('.expanded-model', this.el).toggle();
 		$('.indicator', this.el).toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+	},
+	deleteInterposedQuestion: function () {
+		var htmlElement = $(this.el);
+		interposedQuestionService.delete(this.model.attributes.id, {
+			success: function () {
+				htmlElement.hide();
+			},
+			error: function () {}
+		});
 	},
 });
