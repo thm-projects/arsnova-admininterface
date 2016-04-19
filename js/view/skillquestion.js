@@ -15,7 +15,11 @@ window.SkillQuestionView = Backbone.View.extend({
 		raw.text = markdown.toHTML(raw.text);
 		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
-		if((raw.possibleAnswerCount == 0) || (this.model.attributes.questionType === "grid")) {
+		if(this.model.attributes.questionType === "grid") {
+			$('.js-get-answers', this.el).hide();
+			$('.js-get-possibleanswers', this.el).hide();
+		}
+		else if (raw.possibleAnswerCount == 0) {
 			$('.js-get-possibleanswers', this.el).hide();
 		}
 		return this;
