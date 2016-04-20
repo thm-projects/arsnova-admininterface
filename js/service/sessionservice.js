@@ -2,7 +2,7 @@ var SessionService = function () {
 	return {
 		getSession: function (key, options) {
 			$.ajax({
-				url: "api/session/" + key,
+				url: "api/session/" + key + "?admin=true",
 				type: 'GET',
 				success: options.success,
 				error: function () {

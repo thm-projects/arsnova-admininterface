@@ -5,7 +5,9 @@ window.SessionView = Backbone.View.extend({
 		"click .js-show-interposedQuestions": "interposedQuestions",
 		"click .js-show-motds": "motds",
 		"click .js-delete-all": "deleteAll",
+		"click .js-show-user": "showUser",
 		"click .js-toggle-change-user-form": "toggleChangeUserForm",
+		"click .js-toggle-info": "toggleInfo",
 		"click .js-change-user": "changeUser",
 		"click .js-export": "export",
 	},
@@ -14,6 +16,14 @@ window.SessionView = Backbone.View.extend({
 	},
 	render: function () {
 		var raw = this.model.toJSON();
+		var creationTime = new Date(raw.creationTime);
+		var creationTimeString = creationTime.toDateString();
+		var lastOwnerActivity = new Date(raw.lastOwnerActivity);
+		var lastOwnerActivityString = lastOwnerActivity.toDateString();
+		$.extend(raw, {
+			parsedCreationTime: creationTimeString,
+			parsedLastOwnerActivity: lastOwnerActivityString
+		});
 		$.extend(raw, i18n);
 		$(this.el).html(this.template(raw));
 		return this;
@@ -83,7 +93,10 @@ window.SessionView = Backbone.View.extend({
 		});
 	},
 	toggleChangeUserForm: function () {
-		$('.dont-display', this.el).toggle();
+		$('#change-user-form', this.el).toggle();
+	},
+	toggleInfo: function () {
+		$('.session-info', this.el).toggle();
 	},
 	changeUser: function (e) {
 		e.preventDefault();

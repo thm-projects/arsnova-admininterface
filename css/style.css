@@ -7,6 +7,15 @@
 .small-top-margin{
 	margin-top:30px;
 }
+.left-margin{
+	margin-left: 5px;
+}
+.right-margin{
+	margin-right: 5px;
+}
+.hidden-elem{
+	display: none;
+}
 .sessionkeyinput{
 	width:30px;
 }

@@ -13,6 +13,7 @@ i18n_pack = {
 		lang_enter: "Enter",
 		lang_delete_all: "Delete all",
 		lang_change_user: "Change owner",
+		lang_info: "Info",
 		lang_change: "Change",
 		lang_export: "Export",
 		lang_add_new: "Add new",
@@ -29,6 +30,11 @@ i18n_pack = {
 		lang_totalAnswerCount: "Total Number of answers:",
 		lang_abstentionCount: "Number of abstentions:",
 		lang_user: "User",
+		lang_creator: "Creator",
+		lang_creation_time: "created on",
+		lang_last_owner_activity: "last owner activity",
+		lang_keyword: "keyword",
+		lang_short_name: "short name"
 	}
 }
 window.i18n = i18n_pack["en"];

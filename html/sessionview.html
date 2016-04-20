@@ -15,9 +15,16 @@
 			<span class="glyphicon glyphicon-export" aria-hidden="true"></span>
 			<%= lang_export %>
 		</div>
-		<div type="button" class="btn btn-default js-toggle-change-user-form" aria-label="Left Align">
+		<div type="button" class="btn btn-default js-show-user" aria-label="Left Align">
 			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-			<%= lang_change_user %>
+			<%= creator %>
+		</div>
+		<div type="button" class="btn btn-default js-toggle-change-user-form js-toggle-change-user-form" aria-label="Left Align">
+			<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+		</div>
+		<div type="button" class="btn btn-default js-toggle-info pull-right" aria-label="Left Align">
+			<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+			<%= lang_info %>
 		</div>
 	</div>
 	<div id="change-user-form" class="dont-display small-top-margin">
@@ -29,6 +36,52 @@
 				<button type="submit" class="btn btn-default js-change-user"><%= lang_change %></button>
 			</div>
 		</form>
+	</div>
+	<div class="session-info small-top-margin dont-display">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-5">
+						<%= lang_keyword %>
+					</div>
+					<div class="col-sm-7">
+						<%= keyword %>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-5">
+						<%= lang_short_name %>
+					</div>
+					<div class="col-sm-7">
+						<%= shortName %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-5">
+						<%= lang_creation_time %>
+					</div>
+					<div class="col-sm-7">
+						<%= parsedCreationTime %>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-5">
+						<%= lang_last_owner_activity %>
+					</div>
+					<div class="col-sm-7">
+						<%= parsedLastOwnerActivity %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="panel panel-default small-top-margin">
 	  <div class="panel-body js-show-lectureQuestions">
