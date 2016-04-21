@@ -17,7 +17,6 @@ i18n_pack = {
 		lang_change: "Change",
 		lang_export: "Export",
 		lang_add_new: "Add new",
-		lang_answers: "Answers",
 		lang_lectureQuestions: "Lecture questions",
 		lang_motds: "Message of the day",
 		lang_startdate: "Startdate",
