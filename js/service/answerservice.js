@@ -22,5 +22,5 @@ var AnswerService = function () {
 				}
 			});
 		},
-	}
+	};
 };

@@ -19,16 +19,16 @@ window.HomeView = Backbone.View.extend({
 		var sessionkey = $('#homeinputsessionkey').val().replace(/ /g,'');
 		app.navigate("/session/" + sessionkey, true);
 	},
-	enterUser: function (e) {
+	enterUser: function () {
 
 	},
-	newMotd: function (e) {
+	newMotd: function () {
 		$("#homeview", this.el).hide();
 		var emptyMotd = new Motd();
 		this.motdEditView = new MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: window.app.motdOverView});
 		$("#homeAdditional", this.el).append(this.motdEditView.el);
 	},
-	deleteAllMotds: function (e) {
+	deleteAllMotds: function () {
 		var motdOverEl = window.app.motdOverView.el;
 		var motdCollection = window.app.motdOverView.model;
 		var removeElem = function (motd) {

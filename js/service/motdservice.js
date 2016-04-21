@@ -33,5 +33,5 @@ var MotdService = function () {
 				}
 			});
 		}
-	}
-}
+	};
+};

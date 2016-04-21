@@ -19,7 +19,7 @@ window.SkillQuestionView = Backbone.View.extend({
 			$('.js-get-answers', this.el).hide();
 			$('.js-get-possibleanswers', this.el).hide();
 		}
-		else if (raw.possibleAnswerCount == 0) {
+		else if (raw.possibleAnswerCount === 0) {
 			$('.js-get-possibleanswers', this.el).hide();
 		}
 		return this;
@@ -31,7 +31,7 @@ window.SkillQuestionView = Backbone.View.extend({
 	getAnswers: function () {
 		app.navigate("skillquestion/" + this.model.attributes._id, true);
 	},
-	getPossibleAnswers: function (e) {
+	getPossibleAnswers: function () {
 		if (!this.possibleAnswerOverView) {
 			this.possibleAnswerOverView = new PossibleAnswerOverView({model: this.model.attributes.possibleAnswers});
 			$('.possibleanswers', this.el).append(this.possibleAnswerOverView.el);

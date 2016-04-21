@@ -1,4 +1,4 @@
-i18n_pack = {
+var i18n_pack = {
 	"en": {
 		lang_imprint: "Imprint",
 		lang_arsnova_link: "What is ARSnova?",
@@ -35,5 +35,5 @@ i18n_pack = {
 		lang_keyword: "keyword",
 		lang_short_name: "short name"
 	}
-}
-window.i18n = i18n_pack["en"];
+};
+window.i18n = i18n_pack.en;

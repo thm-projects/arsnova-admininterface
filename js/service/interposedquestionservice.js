@@ -32,5 +32,5 @@ var InterposedQuestionService = function () {
 				}
 			});
 		},
-	}
-}
+	};
+};

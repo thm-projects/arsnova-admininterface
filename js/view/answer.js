@@ -19,7 +19,7 @@ window.AnswerView = Backbone.View.extend({
     var timestring = time.getDate() + "_" + (time.getMonth() + 1) + "_" + time.getFullYear();
     a.href = 'data:' + exportData;
 		var fileName = "answer";
-		if ((this.model.attributes.subject != null) && (this.model.attributes.subject !== "")) {
+		if ((this.model.attributes.subject !== null) && (this.model.attributes.subject !== "")) {
 			fileName = this.model.attributes.subject;
 		}
     a.download = encodeURIComponent(fileName) + "-" + timestring + ".json";

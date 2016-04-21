@@ -85,7 +85,7 @@ window.SessionView = Backbone.View.extend({
 	},
 	deleteAll: function () {
 		sessionService.delete(sessionStorage.getItem("sessionkey"), {
-			success: function (data) {
+			success: function () {
 				app.navigate("/home", true);
 			},
 			error: function () {
@@ -104,7 +104,7 @@ window.SessionView = Backbone.View.extend({
 		var sessionModel = this.model.toJSON();
 		sessionModel.creator = newUsername;
 		sessionService.update(sessionModel, {
-			success: function (data) {
+			success: function () {
 				console.log("sessionowner changed successfully");
 				$('.dont-display', this.el).toggle();
 			},
@@ -130,11 +130,11 @@ window.SessionView = Backbone.View.extend({
 		var dateString = "";
 		var d = new Date();
 
-		dateString = ('0' + d.getFullYear()).slice(-2) + '-'
-		+ ('0' + (d.getMonth() + 1)).slice(-2) + '-'
-		+ ('0' + d.getDate()).slice(-2) + '-'
-		+ ('0' + d.getHours()).slice(-2) + '-'
-		+ ('0' + d.getMinutes()).slice(-2);
+		dateString = ('0' + d.getFullYear()).slice(-2) + '-' +
+			('0' + (d.getMonth() + 1)).slice(-2) + '-' +
+			('0' + d.getDate()).slice(-2) + '-' +
+			('0' + d.getHours()).slice(-2) + '-' +
+			('0' + d.getMinutes()).slice(-2);
 		var filename = exportData.session.name + dateString + ".json";
 
 		var blob = new Blob([jsonData], {type: "text/plain;charset=utf-8"});

@@ -30,7 +30,7 @@ var AppRouter = Backbone.Router.extend({
 		$('.maintpl').html(this.loginView.el);
 	},
 	imprint: function () {
-		$('.maintpl').html(window.Templates["ImprintView"]);
+		$('.maintpl').html(window.Templates.ImprintView);
 	},
 	home: function () {
 		if ($.cookie('JSESSIONID')) {

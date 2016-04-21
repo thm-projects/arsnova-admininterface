@@ -25,7 +25,6 @@ window.SkillQuestion = Backbone.Model.extend({
 		subject: "",
 		text: "",
 		timestamp: "",
-		type: "",
 		gridSize: "",
 		offsetX: "",
 		offsetY: "",

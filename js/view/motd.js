@@ -33,6 +33,6 @@ window.MotdView = Backbone.View.extend({
 			},
 			error: function () {
 			}
-		})
+		});
 	},
 });

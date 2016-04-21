@@ -7,7 +7,7 @@ var SessionService = function () {
 				success: options.success,
 				error: function () {
 					console.log("error fetching session via key: " + key);
-					options.error()
+					options.error();
 				}
 			});
 		},
@@ -66,7 +66,7 @@ var SessionService = function () {
 					console.log("error getting skillquestioncount for sesionkey " + key);
 					options.error();
 				}
-			})
+			});
 		},
-	}
+	};
 };

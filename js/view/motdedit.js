@@ -8,7 +8,6 @@ window.MotdEditView = Backbone.View.extend({
 		this.motdOverView = options.motdOverView;
 	},
 	render: function () {
-		var timeForString = new Date();
 		var startString = "";
 		var endString = "";
 		var raw = this.model.toJSON();
@@ -53,15 +52,23 @@ window.MotdEditView = Backbone.View.extend({
 		var pos = null;
 		var ret = null;
 		var del = timestring.indexOf('.');
-		if (!del) return "";
+		if (!del) {
+			return "";
+		}
 		datestrings[0] = timestring.substr(0, del);
 		pos = timestring.indexOf('.') + 1;
-		if (!pos) return "";
+		if (!pos) {
+			return "";
+		}
 		del = timestring.indexOf('.', pos);
-		if (!del) return "";
+		if (!del) {
+			return "";
+		}
 		datestrings[1] = timestring.substr(pos, del - pos);
 		pos = timestring.indexOf('.', pos) + 1;
-		if (!pos) return "";
+		if (!pos) {
+			return "";
+		}
 		datestrings[2] = timestring.substr(pos);
 		ret = new Date(datestrings[1] + "/" + datestrings[0] + "/" + datestrings[2]);
 		return ret.getTime();

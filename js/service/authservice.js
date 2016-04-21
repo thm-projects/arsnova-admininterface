@@ -4,7 +4,7 @@ var AuthService = function () {
 			$.ajax({
 				url: "api/whoami",
 				type: 'GET',
-				success: function (data) {
+				success: function () {
 				},
 				error: function () {
 					$.removeCookie("JSESSIONID", {path: "/"});
@@ -32,12 +32,12 @@ var AuthService = function () {
 			$.ajax({
 				url: "api/auth/logout",
 				type: 'GET',
-				success: function (data) {
+				success: function () {
 					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
 					app.navigate("/login", true);
 				},
 			});
 		},
-	}
+	};
 };
