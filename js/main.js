@@ -1,12 +1,3 @@
-//namespace allocation
-(function () {
-	window.App = {
-		Model: {},
-		View: {},
-		Service: {}
-	};
-});
-
 App.utils.loadTemplate([
 	'HeaderView',
 	'FooterView',
@@ -27,6 +18,7 @@ App.utils.loadTemplate([
 	'InterposedQuestionOverView',
 ], function () {
 	app = new AppRouter();
+	var authService = new App.Service.AuthService();
 	authService.whoami();
 	Backbone.history.start();
 });

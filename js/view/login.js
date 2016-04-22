@@ -13,6 +13,7 @@ App.View.LoginView = Backbone.View.extend({
 	login: function () {
 		var username = encodeURIComponent($('#inputusername').val());
 		var password = encodeURIComponent($('#inputpassword').val());
+		var authService = new App.Service.AuthService();
 		authService.login(username, password, {
 			success: function (data) {
 				app.initialize();

@@ -7,13 +7,13 @@ App.utils = {
 		window.Templates = [];
 
 		$.each(views, function(index, view) {
-			if (window[view]) {
+			if (App.View[view]) {
 				deferreds.push($.get('html/'+view.toLowerCase()+'.html', function(data) {
-					window[view].prototype.template = _.template(data);
+					App.View[view].prototype.template = _.template(data);
 				}));
 			} else {
 				deferreds.push($.get('html/'+view.toLowerCase()+'.html', function(data) {
-					window.Templates[view] = _.template(data);
+					App.Template[view] = _.template(data);
 				}));
 			}
 		});

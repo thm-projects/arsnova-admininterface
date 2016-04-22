@@ -31,6 +31,9 @@ App.View.SessionView = Backbone.View.extend({
 	asyncDataLoad: function () {
 		var sessionkey = sessionStorage.getItem("sessionkey");
 		var me = this;
+		var sessionService = new App.Service.SessionService();
+		var interposedQuestionService = new App.Service.InterposedQuestionService();
+		var motdService = new App.Service.MotdService();
 		sessionService.getCount(sessionkey, "lecture", {
 			success: function (data) {
 				$("#lecture-question-badge").html(data);
@@ -84,6 +87,7 @@ App.View.SessionView = Backbone.View.extend({
 		}
 	},
 	deleteAll: function () {
+		var sessionService = new App.Service.SessionService();
 		sessionService.delete(sessionStorage.getItem("sessionkey"), {
 			success: function () {
 				app.navigate("/home", true);
@@ -103,6 +107,7 @@ App.View.SessionView = Backbone.View.extend({
 		var newUsername = $('#newusername').val();
 		var sessionModel = this.model.toJSON();
 		sessionModel.creator = newUsername;
+		var sessionService = new App.Service.SessionService();
 		sessionService.update(sessionModel, {
 			success: function () {
 				console.log("sessionowner changed successfully");
@@ -113,6 +118,7 @@ App.View.SessionView = Backbone.View.extend({
 		});
 	},
 	export: function () {
+		var sessionService = new App.Service.SessionService();
 		var successFunction = this.writeExportDataToFile;
 		sessionService.export(sessionStorage.getItem("sessionkey"), {
 			success: function (data) {
