@@ -1,4 +1,4 @@
-window.PossibleAnswerView = Backbone.View.extend({
+App.View.PossibleAnswerView = Backbone.View.extend({
 	initialize: function () {
 
 	},

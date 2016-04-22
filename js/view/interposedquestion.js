@@ -1,4 +1,4 @@
-window.InterposedQuestionView = Backbone.View.extend({
+App.View.InterposedQuestionView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
 		"click .js-delete-model": "deleteInterposedQuestion",

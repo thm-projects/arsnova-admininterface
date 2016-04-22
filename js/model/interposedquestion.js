@@ -1,2 +1,2 @@
-window.InterposedQuestion = Backbone.Model.extend({
+App.Model.InterposedQuestion = Backbone.Model.extend({
 });

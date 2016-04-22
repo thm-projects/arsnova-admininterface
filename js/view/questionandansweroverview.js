@@ -1,12 +1,12 @@
-window.QuestionAndAnswerOverView = Backbone.View.extend({
+App.View.QuestionAndAnswerOverView = Backbone.View.extend({
 	initialize: function () {
 		this.render();
 	},
 	render: function () {
 		$(this.el).html(this.template(i18n));
-		this.skillQuestion = new SkillQuestion();
+		this.skillQuestion = new App.Model.SkillQuestion();
 		this.skillQuestion.attributes = this.model;
-		this.skillQuestionView = new SkillQuestionView({model: this.skillQuestion});
+		this.skillQuestionView = new App.View.SkillQuestionView({model: this.skillQuestion});
 		$(".js-get-answers", this.skillQuestionView.el).hide();
 		$("#skillquestion", this.el).append(this.skillQuestionView.el);
 		var abstentionCount = 0;
@@ -15,9 +15,9 @@ window.QuestionAndAnswerOverView = Backbone.View.extend({
 				abstentionCount++;
 				continue;
 			}
-			var answer = new Answer();
+			var answer = new App.Model.Answer();
 			answer.attributes = this.model.answers[i];
-			var answerView = new AnswerView({model: answer});
+			var answerView = new App.View.AnswerView({model: answer});
 			$('#answers', this.el).append(answerView.el);
 		}
 	},

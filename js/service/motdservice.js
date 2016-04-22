@@ -1,4 +1,4 @@
-var MotdService = function () {
+App.Service.MotdService = function () {
 	return {
 		getAdminMotds: function (options) {
 			$.ajax({

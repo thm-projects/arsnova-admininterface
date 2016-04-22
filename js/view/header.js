@@ -1,4 +1,4 @@
-window.HeaderView = Backbone.View.extend({
+App.View.HeaderView = Backbone.View.extend({
 	events: {
 		"click .js-logout": "logout",
 		"click .js-enter-session": "enterSession"

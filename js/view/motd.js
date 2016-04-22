@@ -1,4 +1,4 @@
-window.MotdView = Backbone.View.extend({
+App.View.MotdView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
 		"click .js-delete-model": "deleteMotd",

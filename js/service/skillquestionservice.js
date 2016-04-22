@@ -1,4 +1,4 @@
-var SkillQuestionService = function () {
+App.Service.SkillQuestionService = function () {
 	return {
 		getLectureQuestionsForSession: function (key, options) {
 			$.ajax({

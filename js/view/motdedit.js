@@ -1,4 +1,4 @@
-window.MotdEditView = Backbone.View.extend({
+App.View.MotdEditView = Backbone.View.extend({
 	events: {
 		"click #motd_submit": "saveMotd",
 	},

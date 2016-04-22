@@ -1,4 +1,4 @@
-window.Answer = Backbone.Model.extend({
+App.Model.Answer = Backbone.Model.extend({
 	initialize: function () {
 
 	},

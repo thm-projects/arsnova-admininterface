@@ -1,4 +1,4 @@
-var SessionService = function () {
+App.Service.SessionService = function () {
 	return {
 		getSession: function (key, options) {
 			$.ajax({

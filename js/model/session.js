@@ -1,4 +1,4 @@
-window.Session = Backbone.Model.extend({
+App.Model.Session = Backbone.Model.extend({
 	urlRoot: "api/session",
 	defaults: {
 		_rev: "",

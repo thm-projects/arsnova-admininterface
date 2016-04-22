@@ -1,4 +1,4 @@
-window.HomeView = Backbone.View.extend({
+App.View.HomeView = Backbone.View.extend({
 	events: {
 		"click .js-enter-session": "enterSession",
 		"click .js-enter-user": "enterUser",
@@ -10,7 +10,7 @@ window.HomeView = Backbone.View.extend({
 	},
 	render: function () {
 		$(this.el).html(this.template(i18n));
-		window.app.motdOverView = new MotdOverView({model: this.model});
+		window.app.motdOverView = new App.View.MotdOverView({model: this.model});
 		$("#adminmotds", this.el).append(window.app.motdOverView.el);
 		return this;
 	},
@@ -25,7 +25,7 @@ window.HomeView = Backbone.View.extend({
 	newMotd: function () {
 		$("#homeview", this.el).hide();
 		var emptyMotd = new Motd();
-		this.motdEditView = new MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: window.app.motdOverView});
+		this.motdEditView = new App.View.MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: window.app.motdOverView});
 		$("#homeAdditional", this.el).append(this.motdEditView.el);
 	},
 	deleteAllMotds: function () {

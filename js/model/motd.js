@@ -1,4 +1,4 @@
-window.Motd = Backbone.Model.extend({
+App.Model.Motd = Backbone.Model.extend({
 	url: "api/motd/",
 	defaults: {
 		"title": "",

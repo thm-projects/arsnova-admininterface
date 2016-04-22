@@ -19,14 +19,14 @@ var AppRouter = Backbone.Router.extend({
 			$('.headtpl').html("");
 		}
 		else {
-			this.headerView = new HeaderView();
+			this.headerView = new App.View.HeaderView();
 			$('.headtpl').html(this.headerView.el);
 		}
-		this.footerView = new FooterView();
+		this.footerView = new App.View.FooterView();
 		$('.foottpl').html(this.footerView.el);
 	},
 	login: function () {
-		this.loginView = new LoginView();
+		this.loginView = new App.View.LoginView();
 		$('.maintpl').html(this.loginView.el);
 	},
 	imprint: function () {
@@ -34,28 +34,30 @@ var AppRouter = Backbone.Router.extend({
 	},
 	home: function () {
 		if ($.cookie('JSESSIONID')) {
+			var motdService = new App.Service.MotdService();
 			motdService.getAdminMotds({
 				success: function (data) {
-					this.homeView = new HomeView({model:data});
+					this.homeView = new App.View.HomeView({model:data});
 					$('.maintpl').html(this.homeView.el);
 				},
 				error: function () {
-					this.homeView = new HomeView();
+					this.homeView = new App.View.HomeView();
 					$('.maintpl').html(this.homeView.el);
 				}
 			});
 		}
 		else {
-			this.loginView = new LoginView();
+			this.loginView = new App.View.LoginView();
 			$('.maintpl').html(this.loginView.el);
 		}
 	},
 	enterSession: function (sessionkey) {
+		var sessionService = new App.Service.SessionService();
 		sessionService.getSession(sessionkey, {
 			success: function (data) {
-				var session = new Session(data);
+				var session = new App.Model.Session(data);
 				sessionStorage.setItem("sessionkey", sessionkey);
-				this.sessionView = new SessionView({model: session});
+				this.sessionView = new App.View.SessionView({model: session});
 				$('.maintpl').html(this.sessionView.el);
 				this.sessionView.asyncDataLoad();
 			},
@@ -65,9 +67,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showLectureQuestions: function (sessionkey) {
+		var skillQuestionService = new App.Service.SkillQuestionService();
 		skillQuestionService.getLectureQuestionsForSession(sessionkey, {
 			success: function (data) {
-				this.skillQuestionOverView = new SkillQuestionOverView({model: data});
+				this.skillQuestionOverView = new App.View.SkillQuestionOverView({model: data});
 				$('.maintpl').html(this.skillQuestionOverView.el);
 			},
 			error: function () {
@@ -76,9 +79,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showPreparationQuestions: function (sessionkey) {
+		var skillQuestionService = new App.Service.SkillQuestionService();
 		skillQuestionService.getPreparationQuestionsForSession(sessionkey, {
 			success: function (data) {
-				this.skillQuestionOverView = new SkillQuestionOverView({model: data});
+				this.skillQuestionOverView = new App.View.SkillQuestionOverView({model: data});
 				$('.maintpl').html(this.skillQuestionOverView.el);
 			},
 			error: function () {
@@ -87,9 +91,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showInterposedQuestions: function (sessionkey) {
+		var interposedQuestionService = new App.Service.InterposedQuestionService();
 		interposedQuestionService.get(sessionkey, {
 			success: function (data) {
-				this.interposedQuestionOverView = new InterposedQuestionOverView({model: data});
+				this.interposedQuestionOverView = new App.View.InterposedQuestionOverView({model: data});
 				$('.maintpl').html(this.interposedQuestionOverView.el);
 			},
 			error: function () {
@@ -99,6 +104,8 @@ var AppRouter = Backbone.Router.extend({
 	},
 	showSkillQuestionAndAnswers: function (id) {
 		var skillQuestion = null;
+		var skillQuestionService = new App.Service.SkillQuestionService();
+		var answerService = new App.Service.AnswerService();
 		skillQuestionService.getSkillQuestion(id, {
 			success: function (data) {
 				skillQuestion = data;
@@ -109,7 +116,7 @@ var AppRouter = Backbone.Router.extend({
 		answerService.getAnswersForSkillQuestion(id, {
 			success: function (answerData) {
 				skillQuestion.answers = answerData;
-				this.questionAndAnswerOverView = new QuestionAndAnswerOverView({model: skillQuestion});
+				this.questionAndAnswerOverView = new App.View.QuestionAndAnswerOverView({model: skillQuestion});
 				$('.maintpl').html(this.questionAndAnswerOverView.el);
 			},
 			error: function () {
@@ -117,9 +124,10 @@ var AppRouter = Backbone.Router.extend({
 		});
 	},
 	showSkillQuestionAnswers: function (id) {
+		var answerService = new App.Service.AnswerService();
 		answerService.getAnswersForSkillQuestion(id, {
 			success: function (data) {
-				this.answerOverView = new AnswerOverView({model: data});
+				this.answerOverView = new App.View.AnswerOverView({model: data});
 				$('.maintpl').html(this.answerOverView.el);
 			},
 			error: function () {
@@ -130,6 +138,7 @@ var AppRouter = Backbone.Router.extend({
 	showSessionMotds: function (sessionkey) {
 		var motds = [];
 		if (!sessionStorage.getItem("motds")) {
+			var motdService = new App.Service.MotdService();
 			motdService.getSessionMotds(sessionkey, {
 				success: function (data) {
 					sessionStorage.setItem("motds", JSON.stringify(data));
@@ -141,12 +150,12 @@ var AppRouter = Backbone.Router.extend({
 		if (sessionStorage.getItem("motds")) {
 			motds = JSON.parse(sessionStorage.getItem("motds"));
 		}
-		this.motdOverView = new MotdOverView({model: motds});
+		this.motdOverView = new App.View.MotdOverView({model: motds});
 		$('.maintpl').html(this.motdOverView.el);
 	},
 	newMotd: function () {
 		var motd = new Motd();
-		this.newMotd = new MotdEditView({model: motd});
+		this.newMotd = new App.View.MotdEditView({model: motd});
 		$('.maintpl').html(this.newMotd.el);
 	}
 });

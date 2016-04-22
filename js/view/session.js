@@ -1,4 +1,4 @@
-window.SessionView = Backbone.View.extend({
+App.View.SessionView = Backbone.View.extend({
 	events: {
 		"click .js-show-lectureQuestions": "lectureQuestions",
 		"click .js-show-preparationQuestions": "preparationQuestions",

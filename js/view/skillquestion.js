@@ -1,4 +1,4 @@
-window.SkillQuestionView = Backbone.View.extend({
+App.View.SkillQuestionView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
 		"click .js-get-answers": "getAnswers",

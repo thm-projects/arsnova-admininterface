@@ -1,4 +1,4 @@
-window.AnswerView = Backbone.View.extend({
+App.View.AnswerView = Backbone.View.extend({
 	events: {
 		"click .js-delete-model": "deleteAnswer",
 		"click .js-get-raw": "getRaw",

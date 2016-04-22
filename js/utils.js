@@ -1,4 +1,4 @@
-window.utils = {
+App.utils = {
 
 	// Asynchronously load templates located in separate .html files
 	loadTemplate: function(views, callback) {

@@ -1,4 +1,4 @@
-var InterposedQuestionService = function () {
+App.Service.InterposedQuestionService = function () {
 	return {
 		get: function (sessionkey, options) {
 			$.ajax({

@@ -1,4 +1,4 @@
-var AuthService = function () {
+App.Service.AuthService = function () {
 	return {
 		whoami: function () {
 			$.ajax({

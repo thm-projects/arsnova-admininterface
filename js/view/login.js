@@ -1,4 +1,4 @@
-window.LoginView = Backbone.View.extend({
+App.View.LoginView = Backbone.View.extend({
 	events: {
 		"click .js-login": "login",
 		"submit form": "login"

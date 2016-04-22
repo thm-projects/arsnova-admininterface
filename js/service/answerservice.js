@@ -1,4 +1,4 @@
-var AnswerService = function () {
+App.Service.AnswerService = function () {
 	return {
 		getAnswersForSkillQuestion: function (questionId, options) {
 			$.ajax({

@@ -1,4 +1,4 @@
-window.SkillQuestion = Backbone.Model.extend({
+App.Model.SkillQuestion = Backbone.Model.extend({
 	defaults: {
 		_rev: "",
 		abstention: "",
