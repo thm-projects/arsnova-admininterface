@@ -1,17 +1,17 @@
 {
-	"browser": true,
-	"devel": true,
+  "browser": true,
+  "devel": true,
   "esnext": true,
   "undef": true,
   "unused": true,
   "curly": true,
-	"globals": {
-		"$": false,
-		"_": false,
-		"Backbone": false,
-		"markdown": false,
-		"utils": true,
-		"app": true,
-		"i18n": true
-	}
+  "globals": {
+    "$": false,
+    "_": false,
+    "Backbone": false,
+    "markdown": false,
+    "utils": true,
+    "app": true,
+    "i18n": true
+  }
 }
