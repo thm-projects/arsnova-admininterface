@@ -20,5 +20,5 @@ App.View.QuestionAndAnswerOverView = Backbone.View.extend({
 			var answerView = new App.View.AnswerView({model: answer});
 			$('#answers', this.el).append(answerView.el);
 		}
-	},
+	}
 });

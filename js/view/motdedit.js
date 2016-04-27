@@ -1,6 +1,6 @@
 App.View.MotdEditView = Backbone.View.extend({
 	events: {
-		"click #motd_submit": "saveMotd",
+		"click #motd_submit": "saveMotd"
 	},
 	initialize: function (options) {
 		this.render();
@@ -16,8 +16,7 @@ App.View.MotdEditView = Backbone.View.extend({
 			startString = rightnow.getDate() + "." + (rightnow.getMonth() + 1) + "." + rightnow.getFullYear();
 			rightnow.setDate(rightnow.getDate() + 7);
 			endString = rightnow.getDate() + "." + (rightnow.getMonth() + 1) + "." + rightnow.getFullYear();
-		}
-		else {
+		} else {
 			startString = raw.startdate.getDate() + "." + (raw.startdate.getMonth() + 1) + "." + raw.startdate.getFullYear();
 			endString = raw.enddate.getDate() + "." + (raw.enddate.getMonth() + 1) + "." + raw.enddate.getFullYear();
 		}
@@ -32,7 +31,7 @@ App.View.MotdEditView = Backbone.View.extend({
 			text: $('#motd_text').val(),
 			startdate: this.getTimestampByString($('#motd_startdate').val()).toString(),
 			enddate: this.getTimestampByString($('#motd_enddate').val()).toString(),
-			audience: $('#motd_audience')[0].value,
+			audience: $('#motd_audience')[0].value
 		};
 		var callback = this.callback;
 		var motdOverView = this.motdOverView;
@@ -79,8 +78,6 @@ App.View.MotdEditView = Backbone.View.extend({
 			$('#motd_' + error.name + '_div').addClass('has-error');
 		}, this);
 	},
-
 	hideErrors: function () {
-
 	}
 });

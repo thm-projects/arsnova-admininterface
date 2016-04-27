@@ -11,5 +11,5 @@ App.View.InterposedQuestionOverView = Backbone.View.extend({
 			$(".models", this.el).append(interposedQuestionView.render().el);
 		}
 		return this;
-	},
+	}
 });

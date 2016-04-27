@@ -11,6 +11,7 @@ App.View.HeaderView = Backbone.View.extend({
 		return this;
 	},
 	logout: function () {
+		var authService = new App.Service.AuthService();
 		authService.logout();
 	},
 	enterSession: function (e) {

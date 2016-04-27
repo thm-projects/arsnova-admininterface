@@ -1,6 +1,5 @@
 App.View.PossibleAnswerView = Backbone.View.extend({
 	initialize: function () {
-
 	},
 	render: function () {
 		var raw = this.model.toJSON();
@@ -8,5 +7,5 @@ App.View.PossibleAnswerView = Backbone.View.extend({
 		raw.text = markdown.toHTML(raw.text);
 		$(this.el).html(this.template(raw));
 		return this;
-	},
+	}
 });

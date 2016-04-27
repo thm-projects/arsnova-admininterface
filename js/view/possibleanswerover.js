@@ -3,7 +3,6 @@ App.View.PossibleAnswerOverView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		//$(this.el).html(this.template(i18n));
 		for (var i = 0; i < this.model.length; i++) {
 			var possibleAnswer = new App.View.PossibleAnswer();
 			possibleAnswer.attributes = this.model[i];
@@ -11,5 +10,5 @@ App.View.PossibleAnswerOverView = Backbone.View.extend({
 			$(this.el).append(possibleAnswerView.render().el);
 		}
 		return this;
-	},
+	}
 });

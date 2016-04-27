@@ -50,8 +50,8 @@ App.Model.SkillQuestion = Backbone.Model.extend({
 		imageQuestion: "",
 		textAnswerEnabled: "",
 		hint: "",
-		solution: "",
+		solution: ""
 	},
 	initialize: function () {
-	},
+	}
 });

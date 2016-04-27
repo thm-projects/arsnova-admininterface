@@ -9,7 +9,9 @@
     "$": false,
     "_": false,
     "Backbone": false,
+		"AppRouter": true,
     "markdown": false,
+		"App": true,
     "utils": true,
     "app": true,
     "i18n": true

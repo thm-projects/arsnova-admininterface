@@ -11,5 +11,5 @@ App.View.MotdOverView = Backbone.View.extend({
 			$(".models", this.el).append(motdView.render().el);
 		}
 		return this;
-	},
+	}
 });

@@ -31,6 +31,6 @@ App.Service.InterposedQuestionService = function () {
 					console.log("error deleting interposed question w/ id: " + id);
 				}
 			});
-		},
+		}
 	};
 };

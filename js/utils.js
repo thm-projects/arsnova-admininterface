@@ -1,18 +1,16 @@
 App.utils = {
 
 	// Asynchronously load templates located in separate .html files
-	loadTemplate: function(views, callback) {
-
+	loadTemplate: function (views, callback) {
 		var deferreds = [];
 		window.Templates = [];
-
-		$.each(views, function(index, view) {
+		$.each(views, function (index, view) {
 			if (App.View[view]) {
-				deferreds.push($.get('html/'+view.toLowerCase()+'.html', function(data) {
+				deferreds.push($.get('html/' + view.toLowerCase() + '.html', function (data) {
 					App.View[view].prototype.template = _.template(data);
 				}));
 			} else {
-				deferreds.push($.get('html/'+view.toLowerCase()+'.html', function(data) {
+				deferreds.push($.get('html/' + view.toLowerCase() + '.html', function (data) {
 					App.Template[view] = _.template(data);
 				}));
 			}
@@ -42,14 +40,14 @@ App.utils = {
 		$('.help-inline', controlGroup).html('');
 	},
 
-	showAlert: function(title, text, klass) {
+	showAlert: function (title, text, klass) {
 		$('.alert').removeClass("alert-error alert-warning alert-success alert-info");
 		$('.alert').addClass(klass);
 		$('.alert').html('<strong>' + title + '</strong> ' + text);
 		$('.alert').show();
 	},
 
-	hideAlert: function() {
+	hideAlert: function () {
 		$('.alert').hide();
 	}
 

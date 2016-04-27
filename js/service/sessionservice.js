@@ -51,11 +51,9 @@ App.Service.SessionService = function () {
 			var getParamString = "";
 			if (type === "preparation") {
 				getParamString = "&preparationquestionsonly=true";
-			}
-			else if (type === "lecture") {
+			} else if (type === "lecture") {
 				getParamString = "&lecturequestionsonly=true";
-			}
-			else if (type === "flashcard") {
+			} else if (type === "flashcard") {
 				getParamString = "&flashcardsonly=true";
 			}
 			$.ajax({
@@ -67,6 +65,6 @@ App.Service.SessionService = function () {
 					options.error();
 				}
 			});
-		},
+		}
 	};
 };

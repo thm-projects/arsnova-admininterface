@@ -28,7 +28,7 @@ App.Service.AuthService = function () {
 				}
 			});
 		},
-		logout: function (options) {
+		logout: function () {
 			$.ajax({
 				url: "api/auth/logout",
 				type: 'GET',
@@ -36,8 +36,8 @@ App.Service.AuthService = function () {
 					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
 					app.navigate("/login", true);
-				},
+				}
 			});
-		},
+		}
 	};
 };

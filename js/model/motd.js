@@ -6,7 +6,7 @@ App.Model.Motd = Backbone.Model.extend({
 		"startdate": "",
 		"enddate": "",
 		"audience": "",
-		"sessionkey": "",
+		"sessionkey": ""
 	},
 	validate: function (attrs) {
 		var errors = [];
@@ -25,6 +25,6 @@ App.Model.Motd = Backbone.Model.extend({
 		if (!attrs.audience) {
 			errors.push({name: "audience", msg: "audience can't be empty"});
 		}
-    return errors.length > 0 ? errors : false;
+		return errors.length > 0 ? errors : false;
 	}
 });

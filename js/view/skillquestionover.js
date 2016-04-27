@@ -11,5 +11,5 @@ App.View.SkillQuestionOverView = Backbone.View.extend({
 			$(".models", this.el).append(skillQuestionView.render().el);
 		}
 		return this;
-	},
+	}
 });

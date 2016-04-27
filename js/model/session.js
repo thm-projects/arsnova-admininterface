@@ -25,5 +25,5 @@ App.Model.Session = Backbone.Model.extend({
 		feedbackLock: ""
 	},
 	initialize: function () {
-	},
+	}
 });

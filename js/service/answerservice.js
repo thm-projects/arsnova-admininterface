@@ -21,6 +21,6 @@ App.Service.AnswerService = function () {
 					options.error();
 				}
 			});
-		},
+		}
 	};
 };

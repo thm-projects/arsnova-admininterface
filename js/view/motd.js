@@ -1,7 +1,7 @@
 App.View.MotdView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
-		"click .js-delete-model": "deleteMotd",
+		"click .js-delete-model": "deleteMotd"
 	},
 	initialize: function (options) {
 		this.render();
@@ -26,6 +26,7 @@ App.View.MotdView = Backbone.View.extend({
 		var motd = this.model;
 		var parentView = this.parentView;
 		var el = this.el;
+		var motdService = new App.Service.MotdService();
 		motdService.deleteMotd(motd.attributes.motdkey, {
 			success: function () {
 				parentView.model = _.without(parentView.model, motd.attributes);
@@ -34,5 +35,5 @@ App.View.MotdView = Backbone.View.extend({
 			error: function () {
 			}
 		});
-	},
+	}
 });

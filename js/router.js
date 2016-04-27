@@ -1,4 +1,4 @@
-var AppRouter = Backbone.Router.extend({
+AppRouter = Backbone.Router.extend({
 	routes: {
 		"": "login",
 		"login": "login",
@@ -11,14 +11,13 @@ var AppRouter = Backbone.Router.extend({
 		"session/:key/motds": "showSessionMotds",
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
-		"motd/new": "newMotd",
+		"motd/new": "newMotd"
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
 			this.headerView = null;
 			$('.headtpl').html("");
-		}
-		else {
+		} else {
 			this.headerView = new App.View.HeaderView();
 			$('.headtpl').html(this.headerView.el);
 		}
@@ -37,7 +36,7 @@ var AppRouter = Backbone.Router.extend({
 			var motdService = new App.Service.MotdService();
 			motdService.getAdminMotds({
 				success: function (data) {
-					this.homeView = new App.View.HomeView({model:data});
+					this.homeView = new App.View.HomeView({model: data});
 					$('.maintpl').html(this.homeView.el);
 				},
 				error: function () {
@@ -45,8 +44,7 @@ var AppRouter = Backbone.Router.extend({
 					$('.maintpl').html(this.homeView.el);
 				}
 			});
-		}
-		else {
+		} else {
 			this.loginView = new App.View.LoginView();
 			$('.maintpl').html(this.loginView.el);
 		}
@@ -131,7 +129,6 @@ var AppRouter = Backbone.Router.extend({
 				$('.maintpl').html(this.answerOverView.el);
 			},
 			error: function () {
-
 			}
 		});
 	},
@@ -154,7 +151,7 @@ var AppRouter = Backbone.Router.extend({
 		$('.maintpl').html(this.motdOverView.el);
 	},
 	newMotd: function () {
-		var motd = new Motd();
+		var motd = new App.Model.Motd();
 		this.newMotd = new App.View.MotdEditView({model: motd});
 		$('.maintpl').html(this.newMotd.el);
 	}

@@ -9,7 +9,7 @@ App.View.SessionView = Backbone.View.extend({
 		"click .js-toggle-change-user-form": "toggleChangeUserForm",
 		"click .js-toggle-info": "toggleInfo",
 		"click .js-change-user": "changeUser",
-		"click .js-export": "export",
+		"click .js-export": "export"
 	},
 	initialize: function () {
 		this.render();
@@ -127,7 +127,6 @@ App.View.SessionView = Backbone.View.extend({
 				}
 			},
 			error: function () {
-
 			}
 		});
 	},
@@ -159,7 +158,6 @@ App.View.SessionView = Backbone.View.extend({
 			document.body.appendChild(a);
 			a.click();
 		}
-
 		return jsonData;
-	},
+	}
 });

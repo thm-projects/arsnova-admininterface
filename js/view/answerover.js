@@ -13,5 +13,5 @@ App.View.AnswerOverView = Backbone.View.extend({
 			}
 		}
 		return this;
-	},
+	}
 });

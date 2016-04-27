@@ -43,6 +43,6 @@ App.Service.SkillQuestionService = function () {
 					options.error();
 				}
 			});
-		},
+		}
 	};
 };
