@@ -32,7 +32,7 @@ App.View.SkillQuestionView = Backbone.View.extend({
 	},
 	getPossibleAnswers: function () {
 		if (!this.possibleAnswerOverView) {
-			this.possibleAnswerOverView = new App.Service.PossibleAnswerOverView({model: this.model.attributes.possibleAnswers});
+			this.possibleAnswerOverView = new App.View.PossibleAnswerOverView({model: this.model.attributes.possibleAnswers});
 			$('.possibleanswers', this.el).append(this.possibleAnswerOverView.el);
 			$('.possibleanswers', this.el).show();
 		} else {
