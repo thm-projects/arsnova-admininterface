@@ -11,7 +11,8 @@ AppRouter = Backbone.Router.extend({
 		"session/:key/motds": "showSessionMotds",
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
-		"motd/new": "newMotd"
+		"motd/new": "newMotd",
+		"user/": "user"
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
@@ -154,5 +155,15 @@ AppRouter = Backbone.Router.extend({
 		var motd = new App.Model.Motd();
 		this.newMotd = new App.View.MotdEditView({model: motd});
 		$('.maintpl').html(this.newMotd.el);
+	},
+	user: function () {
+		var username = "";
+		if (sessionStorage.getItem("username")) {
+			username = sessionStorage.getItem("username");
+		}
+		console.log(username);
+		this.userSessionOverView = new App.View.UserSessionOverView({model: username});
+		$('.maintpl').html(this.userSessionOverView.el);
+		this.userSessionOverView.asyncDataLoad();
 	}
 });

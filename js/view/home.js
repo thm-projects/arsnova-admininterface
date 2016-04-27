@@ -19,7 +19,11 @@ App.View.HomeView = Backbone.View.extend({
 		var sessionkey = $('#homeinputsessionkey').val().replace(/ /g,'');
 		app.navigate("/session/" + sessionkey, true);
 	},
-	enterUser: function () {
+	enterUser: function (e) {
+		e.preventDefault();
+		var username = $('#homeinputusername').val();
+		sessionStorage.setItem("username", username);
+		app.navigate("/user/");
 	},
 	newMotd: function () {
 		$("#homeview", this.el).hide();

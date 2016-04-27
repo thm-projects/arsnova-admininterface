@@ -11,6 +11,28 @@ App.Service.SessionService = function () {
 				}
 			});
 		},
+		getUserSessions: function (username, options) {
+			$.ajax({
+				url: "api/session/?ownedonly=true&username=" + username,
+				tpye: 'GET',
+				success: options.success,
+				error: function () {
+					console.log("error fetching user sessions for " + username);
+					options.error();
+				}
+			})
+		},
+		getUserVisitedSessions: function (username, options) {
+			$.ajax({
+				url: "api/session/?visitedonly=true&username=" + username,
+				tpye: 'GET',
+				success: options.success,
+				error: function () {
+					console.log("error fetching user sessions for " + username);
+					options.error();
+				}
+			})
+		},
 		export: function (key, options) {
 			$.ajax({
 				url: "api/session/export?sessionkey=" + key + "&withAnswerStatistics=true&withFeedbackQuestions=true",
