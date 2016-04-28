@@ -20,7 +20,7 @@ App.Service.SessionService = function () {
 					console.log("error fetching user sessions for " + username);
 					options.error();
 				}
-			})
+			});
 		},
 		getUserVisitedSessions: function (username, options) {
 			$.ajax({
@@ -31,7 +31,7 @@ App.Service.SessionService = function () {
 					console.log("error fetching user sessions for " + username);
 					options.error();
 				}
-			})
+			});
 		},
 		export: function (key, options) {
 			$.ajax({

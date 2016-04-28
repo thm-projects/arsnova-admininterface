@@ -2,6 +2,7 @@ App.View.HomeView = Backbone.View.extend({
 	events: {
 		"click .js-enter-session": "enterSession",
 		"click .js-enter-user": "enterUser",
+		"submit #homeusersearch": "enterUser",
 		"click .js-delete-all-motds": "deleteAllMotds",
 		"click .js-add-new-motd": "newMotd"
 	},
@@ -23,7 +24,7 @@ App.View.HomeView = Backbone.View.extend({
 		e.preventDefault();
 		var username = $('#homeinputusername').val();
 		sessionStorage.setItem("username", username);
-		app.navigate("/user/");
+		app.navigate("/user/", true);
 	},
 	newMotd: function () {
 		$("#homeview", this.el).hide();
