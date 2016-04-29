@@ -3,16 +3,30 @@ App.View.UserSessionOverView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		console.log(this);
-		/*$(this.el).html(this.template(i18n));
-		for (var i = 0; i < this.model.length; i++) {
-			var question = new App.Model.SkillQuestion();
-			question.attributes = this.model[i];
-			var skillQuestionView = new App.View.SkillQuestionView({model: question});
-			$(".models", this.el).append(skillQuestionView.render().el);
-		}*/
+		$(this.el).html(this.template(i18n));
 		return this;
 	},
 	asyncDataLoad: function () {
+		var username = this.model;
+		var sessionService = new App.Service.SessionService();
+		sessionService.getUserSessions(username, {
+			success: function (data) {
+				this.userSessionInfoOverView = new App.View.SessionInfoOverView({model: data});
+				$('#user-sessions', this.el).html(this.userSessionInfoOverView.el);
+			},
+			error: function () {
+				//show error nicely. but not now
+			}
+		});
+		sessionService.getUserVisitedSessions(username, {
+			success: function (data) {
+				console.log(data);
+				//this.userVisitedSessionInfoOverView = new App.View.SessionInfoOverView({model: data});
+				//$('#user-sessions', this.el).html(this.userVisitedSessionInfoOverView.el);
+			},
+			error: function () {
+				//show error nicely. but not now
+			}
+		});
 	}
 });

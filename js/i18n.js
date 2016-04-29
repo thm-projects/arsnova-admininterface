@@ -33,7 +33,9 @@ var i18n_pack = {
 		lang_creation_time: "created on",
 		lang_last_owner_activity: "last owner activity",
 		lang_keyword: "keyword",
-		lang_short_name: "short name"
+		lang_short_name: "short name",
+		lang_user_sessions: "Sessions created by this user",
+		lang_user_visited_sessions: "Sessions visited by this user"
 	}
 };
 window.i18n = i18n_pack.en;

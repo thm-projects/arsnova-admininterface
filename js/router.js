@@ -161,7 +161,6 @@ AppRouter = Backbone.Router.extend({
 		if (sessionStorage.getItem("username")) {
 			username = sessionStorage.getItem("username");
 		}
-		console.log(username);
 		this.userSessionOverView = new App.View.UserSessionOverView({model: username});
 		$('.maintpl').html(this.userSessionOverView.el);
 		this.userSessionOverView.asyncDataLoad();
