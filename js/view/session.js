@@ -108,7 +108,7 @@ App.View.SessionView = Backbone.View.extend({
 		var sessionModel = this.model.toJSON();
 		sessionModel.creator = newUsername;
 		var sessionService = new App.Service.SessionService();
-		sessionService.update(sessionModel, {
+		sessionService.updateCreator(sessionModel, {
 			success: function () {
 				console.log("sessionowner changed successfully");
 				$('.dont-display', this.el).toggle();
