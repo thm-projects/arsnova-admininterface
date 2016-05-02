@@ -25,7 +25,9 @@ App.View.SessionView = Backbone.View.extend({
 			parsedLastOwnerActivity: lastOwnerActivityString
 		});
 		$.extend(raw, i18n);
+		this.sessionInfoPart = new App.View.SessionInfoPart({model: raw});
 		$(this.el).html(this.template(raw));
+		$("#session-info-part", this.el).html(this.sessionInfoPart.el);
 		return this;
 	},
 	asyncDataLoad: function () {

@@ -20,9 +20,10 @@ App.View.UserSessionOverView = Backbone.View.extend({
 		});
 		sessionService.getUserVisitedSessions(username, {
 			success: function (data) {
-				console.log(data);
-				//this.userVisitedSessionInfoOverView = new App.View.SessionInfoOverView({model: data});
-				//$('#user-sessions', this.el).html(this.userVisitedSessionInfoOverView.el);
+				if (data) {
+					this.userVisitedSessionInfoOverView = new App.View.SessionInfoOverView({model: data});
+					$('#user-visited-sessions', this.el).html(this.userVisitedSessionInfoOverView.el);
+				}
 			},
 			error: function () {
 				//show error nicely. but not now
