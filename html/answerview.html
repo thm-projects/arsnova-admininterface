@@ -1,19 +1,14 @@
 <div class="panel panel-default model-container">
-	<div class="row">
-		<div class="col-sm-3">
-			<div class="answer_toolbar">
-				<button type="button" class="btn btn-default js-get-raw" aria-label="Left Align">
-					RAW
-				</button>
-				<button type="button" class="btn btn-default js-delete-model" aria-label="Left Align">
-					<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
-				</button>
-			</div>
-		</div>
-		<div class="col-sm-9">
-			<div class="answer_text">
-				<%= answerText %>
-			</div>
-		</div>
+	<div class="answer-toolbar pull-left">
+		<button type="button" class="btn btn-default js-get-raw" aria-label="Left Align">
+			RAW
+		</button>
+		<button type="button" class="btn btn-default js-delete-model" aria-label="Left Align">
+			<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
+		</button>
 	</div>
+	<div class="answer-text pull-left">
+		<%= answerText %>
+	</div>
+	<div class="clearfix">&nbsp;</div>
 </div>
