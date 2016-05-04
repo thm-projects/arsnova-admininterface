@@ -1,47 +1,88 @@
 var gulp = require('gulp');
+var sequence = require('gulp-sequence');
+var clean = require('gulp-clean');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint')
 var pump = require('pump');
 var stylish = require('jshint-stylish');
 var concat = require('gulp-concat');
 var jscs = require('gulp-jscs');
+var tar = require('gulp-tar');
+var gzip = require('gulp-gzip');
+var rename = require('gulp-rename');
+
+var jsFiles = [
+	"./js/namespace.js",
+	"./js/i18n.js",
+	"./js/model/*.js",
+	"./js/service/*.js",
+	"./js/view/*.js",
+	"./js/utils.js",
+	"./js/router.js",
+	"./js/main.js"
+];
 
 gulp.task('default', ['codeCheck']);
 
 gulp.task('watch', function () {
-        gulp.start('codeCheck');
-        gulp.watch('./js/**/*.js', ['codeCheck'])
+	gulp.start('codeCheck');
+	gulp.watch('./js/**/*.js', ['codeCheck'])
 });
 
+gulp.task('package', sequence('concat', 'compress', 'copyTemplates', 'copyProductionIndex', 'tarball', 'clean'));
+
 gulp.task('codeCheck', function () {
-        gulp.start('lint');
-        gulp.start('jscs');
+  gulp.start('lint');
+  gulp.start('jscs');
 });
 
 gulp.task('compress', function (cb) {
   pump([
-        gulp.src('./js/**/*.js'),
-        uglify(),
-        gulp.dest('dist')
-    ],
-    cb
+    gulp.src('./dist/admininterface.js'),
+    uglify(),
+    gulp.dest('./build')
+  	],
+  	cb
   );
 });
 
 gulp.task('lint', function () {
   return gulp.src('./js/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
+    	.pipe(jshint())
+    	.pipe(jshint.reporter(stylish));
 });
 
 gulp.task('jscs', function () {
 	return gulp.src('./js/**/*.js')
-        .pipe(jscs())
-        .pipe(jscs.reporter());
+      .pipe(jscs())
+      .pipe(jscs.reporter());
 });
 
 gulp.task('concat', function () {
-	return gulp.src('dist/**/*.js')
-		.pipe(concat('admininterface.js'))
-		.pipe(gulp.dest('./dist/'));
+	return gulp.src(jsFiles)
+			.pipe(concat('admininterface.js'))
+			.pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('clean', function () {
+	return gulp.src(['./dist/*', './build/*'], {read: false})
+			.pipe(clean());
+});
+
+gulp.task('copyTemplates', function () {
+	return gulp.src('./html/*')
+			.pipe(gulp.dest('./build/html'));
+});
+
+gulp.task('copyProductionIndex', function () {
+	return gulp.src('./production.html')
+			.pipe(rename('index.html'))
+			.pipe(gulp.dest('./build'));
+});
+
+gulp.task('tarball', function () {
+	return gulp.src(['./build/**/*'])
+			.pipe(tar('arsnova-admininterface.tar'))
+			.pipe(gzip({ extension: 'gz'}))
+			.pipe(gulp.dest('.'));
 });
