@@ -9,7 +9,10 @@ var concat = require('gulp-concat');
 var jscs = require('gulp-jscs');
 var tar = require('gulp-tar');
 var gzip = require('gulp-gzip');
+var zip = require('gulp-zip');
+
 var rename = require('gulp-rename');
+var war = require('gulp-war');
 
 var jsFiles = [
 	"./js/namespace.js",
@@ -31,7 +34,9 @@ gulp.task('watch', function () {
 
 gulp.task('package', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'tarball', 'clean'));
 
-gulp.task('build', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'cleanDist'));
+gulp.task('war', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'warball', 'clean'));
+
+gulp.task('build', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'copyBuild', 'clean'));
 
 gulp.task('codeCheck', function () {
   gulp.start('lint');
@@ -40,7 +45,7 @@ gulp.task('codeCheck', function () {
 
 gulp.task('compress', function (cb) {
   pump([
-    gulp.src('./dist/admininterface.js'),
+    gulp.src('./build/admininterface.js'),
     uglify(),
     gulp.dest('./build')
   	],
@@ -63,11 +68,11 @@ gulp.task('jscs', function () {
 gulp.task('concat', function () {
 	return gulp.src(jsFiles)
 			.pipe(concat('admininterface.js'))
-			.pipe(gulp.dest('./dist/'));
+			.pipe(gulp.dest('./build/'));
 });
 
 gulp.task('clean', function () {
-	return gulp.src(['./dist/*', './build/*'], {read: false})
+	return gulp.src('./build/*', {read: false})
 			.pipe(clean());
 });
 
@@ -92,9 +97,24 @@ gulp.task('copyCSS', function () {
 			.pipe(gulp.dest('./build/css'));
 });
 
+gulp.task('copyBuild', function () {
+	return gulp.src('./build/**/*')
+			.pipe(gulp.dest('./dist'));
+});
+
 gulp.task('tarball', function () {
 	return gulp.src(['./build/**/*'])
 			.pipe(tar('arsnova-admininterface.tar'))
 			.pipe(gzip({ extension: 'gz'}))
-			.pipe(gulp.dest('.'));
+			.pipe(gulp.dest('./dist'));
+});
+
+gulp.task('warball', function () {
+	return gulp.src(['./build/**/*'])
+			.pipe(war({
+				welcome: 'index.html',
+				displayName: 'ARSnova Admininterface'
+			}))
+      .pipe(zip('arsnova-admininterface.war'))
+			.pipe(gulp.dest('./dist'));
 });
