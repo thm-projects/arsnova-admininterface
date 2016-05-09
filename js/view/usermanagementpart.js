@@ -1,7 +1,7 @@
 App.View.UserManagementPart = Backbone.View.extend({
 	events: {
 		"click .js-enter-user": "enterUser",
-		"submit #homeusersearch": "enterUser",
+		"submit #homeusersearch": "enterUser"
 	},
 	initialize: function () {
 		this.render();
