@@ -125,7 +125,7 @@ App.View.SessionView = Backbone.View.extend({
 		e.preventDefault();
 		var username = this.model.attributes.creator;
 		sessionStorage.setItem("username", username);
-		app.navigate("/user/", true);
+		app.navigate("/user/" + username, true);
 	},
 	export: function () {
 		var sessionService = new App.Service.SessionService();
