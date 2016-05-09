@@ -29,7 +29,9 @@ gulp.task('watch', function () {
 	gulp.watch('./js/**/*.js', ['codeCheck'])
 });
 
-gulp.task('package', sequence('concat', 'compress', 'copyTemplates', 'copyProductionIndex', 'tarball', 'clean'));
+gulp.task('package', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'tarball', 'clean'));
+
+gulp.task('build', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'cleanDist'));
 
 gulp.task('codeCheck', function () {
   gulp.start('lint');
@@ -69,6 +71,11 @@ gulp.task('clean', function () {
 			.pipe(clean());
 });
 
+gulp.task('cleanDist', function () {
+	return gulp.src('./dist/*', {read: false})
+			.pipe(clean());
+});
+
 gulp.task('copyTemplates', function () {
 	return gulp.src('./html/*')
 			.pipe(gulp.dest('./build/html'));
@@ -78,6 +85,11 @@ gulp.task('copyProductionIndex', function () {
 	return gulp.src('./production.html')
 			.pipe(rename('index.html'))
 			.pipe(gulp.dest('./build'));
+});
+
+gulp.task('copyCSS', function () {
+	return gulp.src('./css/**/*')
+			.pipe(gulp.dest('./build/css'));
 });
 
 gulp.task('tarball', function () {
