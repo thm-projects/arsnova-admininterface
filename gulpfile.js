@@ -32,11 +32,11 @@ gulp.task('watch', function () {
 	gulp.watch('./js/**/*.js', ['codeCheck'])
 });
 
-gulp.task('package', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'tarball', 'clean'));
+gulp.task('package', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS', 'copyLib', 'copyPublic'], 'tarball', 'clean'));
 
-gulp.task('war', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'warball', 'clean'));
+gulp.task('war', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS', 'copyLib', 'copyPublic'], 'warball', 'clean'));
 
-gulp.task('build', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS'], 'copyBuild', 'clean'));
+gulp.task('build', sequence('concat', 'compress', ['copyTemplates', 'copyProductionIndex', 'copyCSS', 'copyLib', 'copyPublic'], 'copyBuild', 'clean'));
 
 gulp.task('codeCheck', function () {
   gulp.start('lint');
@@ -100,6 +100,16 @@ gulp.task('copyCSS', function () {
 gulp.task('copyBuild', function () {
 	return gulp.src('./build/**/*')
 			.pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copyLib', function () {
+	return gulp.src('./lib/**/*')
+			.pipe(gulp.dest('./build/lib'));
+});
+
+gulp.task('copyPublic', function () {
+	return gulp.src('./public/**/*')
+			.pipe(gulp.dest('./build/public'));
 });
 
 gulp.task('tarball', function () {
