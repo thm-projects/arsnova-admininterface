@@ -5,10 +5,10 @@ App.View.SessionView = Backbone.View.extend({
 		"click .js-show-interposedQuestions": "interposedQuestions",
 		"click .js-show-motds": "motds",
 		"click .js-delete-all": "deleteAll",
-		"click .js-show-user": "showUser",
 		"click .js-toggle-change-user-form": "toggleChangeUserForm",
 		"click .js-toggle-info": "toggleInfo",
 		"click .js-change-user": "changeUser",
+		"click .js-enter-user": "enterUser",
 		"click .js-export": "export"
 	},
 	initialize: function () {
@@ -27,6 +27,8 @@ App.View.SessionView = Backbone.View.extend({
 		$.extend(raw, i18n);
 		this.sessionInfoPart = new App.View.SessionInfoPart({model: raw});
 		$(this.el).html(this.template(raw));
+		this.pageHeaderPart = new App.View.PageHeaderPart({title: raw.name, subtitle: raw.shortName});
+		$("#session-page-header", this.el).html(this.pageHeaderPart.el);
 		$("#session-info-part", this.el).html(this.sessionInfoPart.el);
 		return this;
 	},
@@ -118,6 +120,12 @@ App.View.SessionView = Backbone.View.extend({
 			error: function () {
 			}
 		});
+	},
+	enterUser: function (e) {
+		e.preventDefault();
+		var username = this.model.attributes.creator;
+		sessionStorage.setItem("username", username);
+		app.navigate("/user/", true);
 	},
 	export: function () {
 		var sessionService = new App.Service.SessionService();

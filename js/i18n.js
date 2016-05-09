@@ -35,7 +35,9 @@ var i18n_pack = {
 		lang_keyword: "keyword",
 		lang_short_name: "short name",
 		lang_user_sessions: "Sessions created by this user",
-		lang_user_visited_sessions: "Sessions visited by this user"
+		lang_user_visited_sessions: "Sessions visited by this user",
+		lang_arsnova_slogan_title: "ARSnova Admin Interface",
+		lang_arsnova_slogan_subtitle: "Welcome"
 	}
 };
 window.i18n = i18n_pack.en;

@@ -1,8 +1,6 @@
 App.View.HomeView = Backbone.View.extend({
 	events: {
 		"click .js-enter-session": "enterSession",
-		"click .js-enter-user": "enterUser",
-		"submit #homeusersearch": "enterUser",
 		"click .js-delete-all-motds": "deleteAllMotds",
 		"click .js-add-new-motd": "newMotd"
 	},
@@ -11,6 +9,10 @@ App.View.HomeView = Backbone.View.extend({
 	},
 	render: function () {
 		$(this.el).html(this.template(i18n));
+		this.pageHeaderPart = new App.View.PageHeaderPart({title: i18n.lang_arsnova_slogan_title, subtitle: i18n.lang_arsnova_slogan_subtitle});
+		$("#home-page-header", this.el).html(this.pageHeaderPart.el);
+		this.userManagementPart = new App.View.UserManagementPart();
+		$("#home-user-management-part", this.el).append(this.userManagementPart.el);
 		window.app.motdOverView = new App.View.MotdOverView({model: this.model});
 		$("#adminmotds", this.el).append(window.app.motdOverView.el);
 		return this;
@@ -19,12 +21,6 @@ App.View.HomeView = Backbone.View.extend({
 		e.preventDefault();
 		var sessionkey = $('#homeinputsessionkey').val().replace(/ /g,'');
 		app.navigate("/session/" + sessionkey, true);
-	},
-	enterUser: function (e) {
-		e.preventDefault();
-		var username = $('#homeinputusername').val();
-		sessionStorage.setItem("username", username);
-		app.navigate("/user/", true);
 	},
 	newMotd: function () {
 		$("#homeview", this.el).hide();

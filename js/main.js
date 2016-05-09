@@ -18,7 +18,9 @@ App.utils.loadTemplate([
 	'InterposedQuestionOverView',
 	'UserSessionOverView',
 	'SessionInfoView',
-	'SessionInfoPart'
+	'SessionInfoPart',
+	'UserManagementPart',
+	'PageHeaderPart'
 ], function () {
 	app = new AppRouter();
 	var authService = new App.Service.AuthService();

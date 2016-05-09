@@ -12,7 +12,8 @@ AppRouter = Backbone.Router.extend({
 		"skillquestion/:id": "showSkillQuestionAndAnswers",
 		"skillquestion/:id/answers": "showSkillQuestionAnswers",
 		"motd/new": "newMotd",
-		"user/": "user"
+		"user/": "user",
+		"user/:username": "showUser"
 	},
 	initialize: function () {
 		if (!$.cookie('JSESSIONID')) {
@@ -157,9 +158,17 @@ AppRouter = Backbone.Router.extend({
 		$('.maintpl').html(this.newMotd.el);
 	},
 	user: function () {
+		this.pageHeaderPart = new App.View.PageHeaderPart({model: {pageTitle: "User Management"}});
+		this.userManagementPart = new App.View.UserManagementPart();
+		$('.maintpl').html(this.pageHeaderPart.el);
+		$('.maintpl').append(this.userManagementPart.el);
+	},
+	showUser: function (user) {
 		var username = "";
 		if (sessionStorage.getItem("username")) {
 			username = sessionStorage.getItem("username");
+		} else if (user !== "") {
+			username = user;
 		}
 		this.userSessionOverView = new App.View.UserSessionOverView({model: username});
 		$('.maintpl').html(this.userSessionOverView.el);
