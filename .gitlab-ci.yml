@@ -3,6 +3,7 @@ variables:
   WAR_FILE: dist/arsnova-admininterface.war
 
 stages:
+  - test
   - build
   - deploy
   - synchronization
@@ -10,6 +11,25 @@ stages:
 cache:
   paths:
     - node_modules/
+    
+jshint:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install jshint@^2.9.0
+    - node_modules/jshint/bin/jshint --config .jshintrc ./js
+
+jscs:
+  stage: test
+  tags:
+    - nodejs
+  dependencies: []
+  script:
+    - npm install jscs
+    - node_modules/jscs/bin/jscs --config .jscsrc ./js
+
 
 sync_mirror:
   stage: synchronization
