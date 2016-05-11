@@ -9,11 +9,17 @@ App.View.SessionInfoView = Backbone.View.extend({
 	},
 	render: function () {
 		var raw = this.model.toJSON();
+		raw.name = _.escape(raw.name);
 		$.extend(raw, i18n);
 		var creationTime = new Date(raw.creationTime);
 		var creationTimeString = creationTime.toDateString();
-		var lastOwnerActivity = new Date(raw.lastOwnerActivity);
-		var lastOwnerActivityString = lastOwnerActivity.toDateString();
+		var lastOwnerActivityString = "";
+		if (raw.lastOwnerActivity) {
+			var lastOwnerActivity = new Date(raw.lastOwnerActivity);
+			lastOwnerActivityString = lastOwnerActivity.toDateString();
+		} else {
+			lastOwnerActivityString = "-";
+		}
 		$.extend(raw, {
 			parsedCreationTime: creationTimeString,
 			parsedLastOwnerActivity: lastOwnerActivityString
