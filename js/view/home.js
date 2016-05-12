@@ -2,7 +2,8 @@ App.View.HomeView = Backbone.View.extend({
 	events: {
 		"click .js-enter-session": "enterSession",
 		"click .js-delete-all-motds": "deleteAllMotds",
-		"click .js-add-new-motd": "newMotd"
+		"click .js-add-new-motd": "newMotd",
+		"click .js-edit-motd-model": "editMotd"
 	},
 	initialize: function () {
 		this.render();
@@ -26,6 +27,14 @@ App.View.HomeView = Backbone.View.extend({
 		$("#homeview", this.el).hide();
 		var emptyMotd = new App.Model.Motd();
 		this.motdEditView = new App.View.MotdEditView({model: emptyMotd, callback: this.afterEditView, motdOverView: window.app.motdOverView});
+		$("#homeAdditional", this.el).append(this.motdEditView.el);
+	},
+	editMotd: function (e) {
+		$("#homeview", this.el).hide();
+		var motdkey = $(e.target).closest('.model-container')[0].id;
+		var motdModelAttributes = _.where(window.app.motdOverView.model, {motdkey: motdkey})[0];
+		var motdModel = new App.Model.Motd(motdModelAttributes);
+		this.motdEditView = new App.View.MotdEditView({model: motdModel, callback: this.afterEditView, motdOverView: window.app.motdOverView});
 		$("#homeAdditional", this.el).append(this.motdEditView.el);
 	},
 	deleteAllMotds: function () {

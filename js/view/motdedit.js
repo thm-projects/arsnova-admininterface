@@ -12,13 +12,17 @@ App.View.MotdEditView = Backbone.View.extend({
 		var endString = "";
 		var raw = this.model.toJSON();
 		if (!raw.motdkey) {
+			this.mode = 'new';
 			var rightnow = new Date();
 			startString = rightnow.getDate() + "." + (rightnow.getMonth() + 1) + "." + rightnow.getFullYear();
 			rightnow.setDate(rightnow.getDate() + 7);
 			endString = rightnow.getDate() + "." + (rightnow.getMonth() + 1) + "." + rightnow.getFullYear();
 		} else {
-			startString = raw.startdate.getDate() + "." + (raw.startdate.getMonth() + 1) + "." + raw.startdate.getFullYear();
-			endString = raw.enddate.getDate() + "." + (raw.enddate.getMonth() + 1) + "." + raw.enddate.getFullYear();
+			this.mode = 'edit';
+			var startdate = new Date(raw.startdate);
+			var enddate = new Date(raw.enddate);
+			startString = startdate.getDate() + "." + (startdate.getMonth() + 1) + "." + startdate.getFullYear();
+			endString = enddate.getDate() + "." + (enddate.getMonth() + 1) + "." + enddate.getFullYear();
 		}
 		$.extend(raw, i18n);
 		$.extend(raw, {startdatestring: startString, enddatestring: endString});
@@ -35,8 +39,13 @@ App.View.MotdEditView = Backbone.View.extend({
 		};
 		var callback = this.callback;
 		var motdOverView = this.motdOverView;
+		var editMode = (this.mode === 'edit');
 		var valid = this.model.save(attrs, {
 			success: function (data) {
+				if (editMode) {
+					var oldModelAttributes = _.where(motdOverView.model, {motdkey: data.attributes.motdkey})[0];
+					motdOverView.model = _.without(motdOverView.model, oldModelAttributes);
+				}
 				motdOverView.model.push(data.attributes);
 				motdOverView.render();
 				callback(data);

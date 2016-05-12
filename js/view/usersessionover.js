@@ -3,7 +3,11 @@ App.View.UserSessionOverView = Backbone.View.extend({
 		this.render();
 	},
 	render: function () {
-		$(this.el).html(this.template(i18n));
+		var raw = {
+			username: this.model
+		};
+		$.extend(raw, i18n);
+		$(this.el).html(this.template(raw));
 		return this;
 	},
 	asyncDataLoad: function () {
