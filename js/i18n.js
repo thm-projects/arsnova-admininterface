@@ -35,8 +35,8 @@ var i18n_pack = {
 		lang_last_owner_activity: "last owner activity",
 		lang_keyword: "keyword",
 		lang_short_name: "short name",
-		lang_user_sessions: "Sessions created by this user",
-		lang_user_visited_sessions: "Sessions visited by this user",
+		lang_sessions_created: "Sessions created",
+		lang_sessions_visited: "Sessions visited",
 		lang_arsnova_slogan_title: "ARSnova Admin Interface",
 		lang_arsnova_slogan_subtitle: "Welcome"
 	}
