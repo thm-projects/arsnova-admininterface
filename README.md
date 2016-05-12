@@ -6,6 +6,9 @@ charge. Head over to [arsnova.eu](https://arsnova.eu/) to see it in action.
 
 # ARSnova Admininterface
 
+![Home_View](doc/showcase_home_view.png)
+![User_View](doc/showcase_user_view.png)
+
 This is the administration interface.
 
 For the use of this interface you need an "ARSnova" account (authentication 
