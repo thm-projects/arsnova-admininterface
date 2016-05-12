@@ -34,9 +34,6 @@ jscs:
 sync_mirror:
   stage: synchronization
   when: always
-  except:
-    - master
-    - staging
   allow_failure: true
   script:
     - git clone --bare "$CI_BUILD_REPO" mirror.git
