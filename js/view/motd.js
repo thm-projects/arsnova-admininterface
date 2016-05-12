@@ -1,8 +1,7 @@
 App.View.MotdView = Backbone.View.extend({
 	events: {
 		"click .js-expand-model": "toggleExpand",
-		"click .js-delete-model": "deleteMotd",
-		"click .js-edit-model": "editModel"
+		"click .js-delete-model": "deleteMotd"
 	},
 	initialize: function (options) {
 		this.render();
@@ -36,8 +35,5 @@ App.View.MotdView = Backbone.View.extend({
 			error: function () {
 			}
 		});
-	},
-	editMotd: function () {
-		
 	}
 });
