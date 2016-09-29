@@ -1,7 +1,7 @@
 App.utils = {
 	loadConfiguration: function () {
 		$.ajax({
-			url: "arsnova-config",
+			url: "/arsnova-config",
 			type: 'GET',
 			success: function (data) {
 				window.App.apiPath = data.apiPath;

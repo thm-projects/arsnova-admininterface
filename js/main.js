@@ -25,7 +25,7 @@ App.utils.loadTemplate([
 	'PageHeaderPart'
 ], function () {
 	app = new AppRouter();
-	var authService = new App.Service.AuthService();
-	authService.whoami();
+	/*var authService = new App.Service.AuthService();
+	authService.whoami();*/
 	Backbone.history.start();
 });

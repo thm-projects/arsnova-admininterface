@@ -27,6 +27,36 @@ var jsFiles = [
 
 gulp.task('default', ['codeCheck']);
 
+gulp.task('connect', function () {
+	var connect = require('gulp-connect');
+	var proxy = require('http-proxy-middleware');
+	var modRewrite = require('connect-modrewrite');
+	var Reproxy = require("gulp-connect-reproxy");
+	/*connect.server({
+		root: '',
+		liverelad: true
+	});*/
+	connect.server({
+		port: 8888,
+		middleware: function (connect, options) {
+      return [ (function() {
+        var url = require('url');
+        var proxy = require('proxy-middleware');
+        var options = url.parse('http://localhost:8080');
+        options.route = '/api';
+        return proxy(options);
+      })(), [ (function () {
+        var url = require('url');
+        var proxy = require('proxy-middleware');
+        var options = url.parse('http://localhost:8080/arsnova-config');
+        options.route = '/arsnova-config';
+        return proxy(options);
+      })()]
+			]
+		}
+	});
+});
+
 gulp.task('watch', function () {
 	gulp.start('codeCheck');
 	gulp.watch('./js/**/*.js', ['codeCheck'])

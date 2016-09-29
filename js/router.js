@@ -16,13 +16,19 @@ AppRouter = Backbone.Router.extend({
 		"user/:username": "showUser"
 	},
 	initialize: function () {
-		if (!$.cookie('JSESSIONID')) {
-			this.headerView = null;
-			$('.headtpl').html("");
-		} else {
-			this.headerView = new App.View.HeaderView();
-			$('.headtpl').html(this.headerView.el);
-		}
+		var authService = new App.Service.AuthService();
+		authService.whoami({
+			success: function () {
+				console.log("init success");
+				this.headerView = new App.View.HeaderView();
+				$('.headtpl').html(this.headerView.el);
+			},
+			error: function () {
+				//this.loginView = new App.View.LoginView();
+				//$('.maintpl').html(this.loginView.el);
+				//$('.maintpl').html(window.Templates.loginView);
+			}
+		});
 		this.footerView = new App.View.FooterView();
 		$('.foottpl').html(this.footerView.el);
 	},
@@ -34,22 +40,27 @@ AppRouter = Backbone.Router.extend({
 		$('.maintpl').html(window.Templates.ImprintView);
 	},
 	home: function () {
-		if ($.cookie('JSESSIONID')) {
-			var motdService = new App.Service.MotdService();
-			motdService.getAdminMotds({
-				success: function (data) {
-					this.homeView = new App.View.HomeView({model: data});
-					$('.maintpl').html(this.homeView.el);
-				},
-				error: function () {
-					this.homeView = new App.View.HomeView();
-					$('.maintpl').html(this.homeView.el);
-				}
-			});
-		} else {
-			this.loginView = new App.View.LoginView();
-			$('.maintpl').html(this.loginView.el);
-		}
+		var authService = new App.Service.AuthService();
+		authService.whoami({
+			success: function () {
+				var motdService = new App.Service.MotdService();
+				motdService.getAdminMotds({
+					success: function (data) {
+						this.homeView = new App.View.HomeView({model: data});
+						$('.maintpl').html(this.homeView.el);
+					},
+					error: function () {
+						this.homeView = new App.View.HomeView();
+						$('.maintpl').html(this.homeView.el);
+					}
+				});
+			},
+			error: function () {
+				console.log("error during whoami");
+				this.loginView = new App.View.LoginView();
+				$('.maintpl').html(this.loginView.el);
+			}
+		});
 	},
 	enterSession: function (sessionkey) {
 		var sessionService = new App.Service.SessionService();

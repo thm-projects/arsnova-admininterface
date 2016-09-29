@@ -1,17 +1,20 @@
 App.Service.AuthService = function () {
 	return {
-		whoami: function () {
+		whoami: function (callbacks) {
 			$.ajax({
 				url: window.App.apiPath + "/whoami",
 				type: 'GET',
 				success: function () {
+					//localStorage.setItem("loggedIn", true);
+					callbacks.success();
 				},
 				error: function () {
-					$.removeCookie("JSESSIONID", {path: "/"});
-					app.initialize();
-					if (Backbone.history.getFragment() !== "imprint") {
+					//localStorage.removeItem("loggedIn");
+					callbacks.error();
+					//app.initialize();
+					/*if (Backbone.history.getFragment() !== "imprint") {
 						app.navigate("login", true);
-					}
+					}*/
 				}
 			});
 		},
@@ -21,6 +24,7 @@ App.Service.AuthService = function () {
 				username + "&password=" + password,
 				type: 'POST',
 				success: function (data) {
+					//localStorage.setItem("loggedIn", true);
 					options.success(data);
 				},
 				error: function () {
@@ -33,7 +37,6 @@ App.Service.AuthService = function () {
 				url: window.App.apiPath + "/auth/logout",
 				type: 'GET',
 				success: function () {
-					$.removeCookie("JSESSIONID", {path: "/"});
 					app.initialize();
 					app.navigate("/login", true);
 				}

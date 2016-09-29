@@ -1,7 +1,7 @@
 App.View.LoginView = Backbone.View.extend({
 	events: {
-		"click .js-login": "login",
-		"submit form": "login"
+		"click .js-login": "login"/*,
+		"submit form": "login"*/
 	},
 	initialize: function () {
 		this.render();
@@ -18,6 +18,9 @@ App.View.LoginView = Backbone.View.extend({
 			success: function () {
 				app.initialize();
 				app.navigate("/home", true);
+			},
+			error: function () {
+				console.log("error while logging in");
 			}
 		});
 	}
