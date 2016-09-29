@@ -1,4 +1,16 @@
 App.utils = {
+	loadConfiguration: function () {
+		$.ajax({
+			url: "arsnova-config",
+			type: 'GET',
+			success: function (data) {
+				window.App.apiPath = data.apiPath;
+			},
+			error: function () {
+				console.log("error loading arsnova config");
+			}
+		});
+	},
 
 	// Asynchronously load templates located in separate .html files
 	loadTemplate: function (views, callback) {

@@ -3,5 +3,6 @@ window.App = {
 	Model: {},
 	View: {},
 	Service: {},
-	Template: {}
+	Template: {},
+	apiPah: ""
 };

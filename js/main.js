@@ -1,3 +1,5 @@
+App.utils.loadConfiguration();
+
 App.utils.loadTemplate([
 	'HeaderView',
 	'FooterView',

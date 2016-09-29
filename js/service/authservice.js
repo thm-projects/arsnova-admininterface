@@ -2,7 +2,7 @@ App.Service.AuthService = function () {
 	return {
 		whoami: function () {
 			$.ajax({
-				url: "api/whoami",
+				url: window.App.apiPath + "/whoami",
 				type: 'GET',
 				success: function () {
 				},
@@ -17,7 +17,7 @@ App.Service.AuthService = function () {
 		},
 		login: function (username, password, options) {
 			$.ajax({
-				url: "api/auth/login?type=arsnova&user=" +
+				url: window.App.apiPath + "/auth/login?type=arsnova&user=" +
 				username + "&password=" + password,
 				type: 'POST',
 				success: function (data) {
@@ -30,7 +30,7 @@ App.Service.AuthService = function () {
 		},
 		logout: function () {
 			$.ajax({
-				url: "api/auth/logout",
+				url: window.App.apiPath + "/auth/logout",
 				type: 'GET',
 				success: function () {
 					$.removeCookie("JSESSIONID", {path: "/"});

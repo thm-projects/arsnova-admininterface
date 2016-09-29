@@ -2,7 +2,7 @@ App.Service.InterposedQuestionService = function () {
 	return {
 		get: function (sessionkey, options) {
 			$.ajax({
-				url: "api/audiencequestion/?sessionkey=" + sessionkey,
+				url: window.App.apiPath + "/audiencequestion/?sessionkey=" + sessionkey,
 				type: "GET",
 				success: options.success,
 				error: function () {
@@ -13,7 +13,7 @@ App.Service.InterposedQuestionService = function () {
 		},
 		getCount: function (sessionkey, options) {
 			$.ajax({
-				url: "api/audiencequestion/count?sessionkey=" + sessionkey,
+				url: window.App.apiPath + "/audiencequestion/count?sessionkey=" + sessionkey,
 				type: "GET",
 				success: options.success,
 				error: function () {
@@ -24,7 +24,7 @@ App.Service.InterposedQuestionService = function () {
 		},
 		delete: function (id, options) {
 			$.ajax({
-				url: "api/audiencequestion/" + id,
+				url: window.App.apiPath + "/audiencequestion/" + id,
 				type: "DELETE",
 				success: options.success,
 				error: function () {

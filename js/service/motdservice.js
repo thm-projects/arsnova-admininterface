@@ -2,7 +2,7 @@ App.Service.MotdService = function () {
 	return {
 		getAdminMotds: function (options) {
 			$.ajax({
-				url: "api/motd/?adminview=true",
+				url: window.App.apiPath + "/motd/?adminview=true",
 				type: "GET",
 				success: options.success,
 				error: function () {
@@ -13,7 +13,7 @@ App.Service.MotdService = function () {
 		},
 		getSessionMotds: function (key, options) {
 			$.ajax({
-				url: "api/motd/?adminview=true&sessionkey=" + key,
+				url: window.App.apiPath + "/motd/?adminview=true&sessionkey=" + key,
 				type: "GET",
 				success: options.success,
 				error: function () {
@@ -24,7 +24,7 @@ App.Service.MotdService = function () {
 		},
 		deleteMotd: function (key, options) {
 			$.ajax({
-				url: "api/motd/" + key,
+				url: window.App.apiPath + "/motd/" + key,
 				type: "DELETE",
 				success: options.success,
 				error: function () {

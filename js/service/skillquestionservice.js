@@ -2,7 +2,7 @@ App.Service.SkillQuestionService = function () {
 	return {
 		getLectureQuestionsForSession: function (key, options) {
 			$.ajax({
-				url: "api/lecturerquestion/?lecturequestionsonly=true&requestImageData=true&sessionkey=" + key,
+				url: window.App.apiPath + "/lecturerquestion/?lecturequestionsonly=true&requestImageData=true&sessionkey=" + key,
 				type: 'GET',
 				success: options.success,
 				error: function () {
@@ -13,7 +13,7 @@ App.Service.SkillQuestionService = function () {
 		},
 		getPreparationQuestionsForSession: function (key, options) {
 			$.ajax({
-				url: "api/lecturerquestion/?preparationquestionsonly=true&requestImageData=true&sessionkey=" + key,
+				url: window.App.apiPath + "/lecturerquestion/?preparationquestionsonly=true&requestImageData=true&sessionkey=" + key,
 				type: 'GET',
 				success: options.success,
 				error: function () {
@@ -24,7 +24,7 @@ App.Service.SkillQuestionService = function () {
 		},
 		deleteSkillQuestion: function (questionId, options) {
 			$.ajax({
-				url: "api/lecturerquestion/" + questionId,
+				url: window.App.apiPath + "/lecturerquestion/" + questionId,
 				type: "DELETE",
 				success: options.success,
 				error: function () {
@@ -35,7 +35,7 @@ App.Service.SkillQuestionService = function () {
 		},
 		getSkillQuestion: function (questionId, options) {
 			$.ajax({
-				url: "api/lecturerquestion/" + questionId,
+				url: window.App.apiPath + "/lecturerquestion/" + questionId,
 				type: "GET",
 				success: options.success,
 				error: function () {

@@ -2,7 +2,7 @@ App.Service.SessionService = function () {
 	return {
 		getSession: function (key, options) {
 			$.ajax({
-				url: "api/session/" + key + "?admin=true",
+				url: window.App.apiPath + "/session/" + key + "?admin=true",
 				type: 'GET',
 				success: options.success,
 				error: function () {
@@ -13,7 +13,7 @@ App.Service.SessionService = function () {
 		},
 		getUserSessions: function (username, options) {
 			$.ajax({
-				url: "api/session/?ownedonly=true&username=" + username,
+				url: window.App.apiPath + "/session/?ownedonly=true&username=" + username,
 				tpye: 'GET',
 				success: options.success,
 				error: function () {
@@ -24,7 +24,7 @@ App.Service.SessionService = function () {
 		},
 		getUserVisitedSessions: function (username, options) {
 			$.ajax({
-				url: "api/session/?visitedonly=true&username=" + username,
+				url: window.App.apiPath + "/session/?visitedonly=true&username=" + username,
 				tpye: 'GET',
 				success: options.success,
 				error: function () {
@@ -35,7 +35,7 @@ App.Service.SessionService = function () {
 		},
 		export: function (key, options) {
 			$.ajax({
-				url: "api/session/export?sessionkey=" + key + "&withAnswerStatistics=true&withFeedbackQuestions=true",
+				url: window.App.apiPath + "/session/export?sessionkey=" + key + "&withAnswerStatistics=true&withFeedbackQuestions=true",
 				type: "GET",
 				success: options.success,
 				error: function () {
@@ -46,7 +46,7 @@ App.Service.SessionService = function () {
 		},
 		delete: function (key, options) {
 			$.ajax({
-				url: "api/session/" + key,
+				url: window.App.apiPath + "/session/" + key,
 				type: "DELETE",
 				success: options.success,
 				error: function () {
@@ -57,7 +57,7 @@ App.Service.SessionService = function () {
 		},
 		update: function (session, options) {
 			$.ajax({
-				url: "api/session/" + session.keyword,
+				url: window.App.apiPath + "/session/" + session.keyword,
 				type: "PUT",
 				data: JSON.stringify(session),
 				dataType: "json",
@@ -71,7 +71,7 @@ App.Service.SessionService = function () {
 		},
 		updateCreator: function (session, options) {
 			$.ajax({
-				url: "api/session/" + session.keyword + "/changecreator",
+				url: window.App.apiPath + "/session/" + session.keyword + "/changecreator",
 				type: "PUT",
 				data: JSON.stringify(session.creator),
 				dataType: "json",
@@ -93,7 +93,7 @@ App.Service.SessionService = function () {
 				getParamString = "&flashcardsonly=true";
 			}
 			$.ajax({
-				url: "api/lecturerquestion/count?sessionkey=" + key + getParamString,
+				url: window.App.apiPath + "/lecturerquestion/count?sessionkey=" + key + getParamString,
 				type: "GET",
 				success: options.success,
 				error: function () {

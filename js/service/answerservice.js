@@ -2,7 +2,7 @@ App.Service.AnswerService = function () {
 	return {
 		getAnswersForSkillQuestion: function (questionId, options) {
 			$.ajax({
-				url: "api/lecturerquestion/" + questionId + "/answer/?all=true",
+				url: window.App.apiPath + "/lecturerquestion/" + questionId + "/answer/?all=true",
 				type: 'GET',
 				success: options.success,
 				error: function () {
@@ -13,7 +13,7 @@ App.Service.AnswerService = function () {
 		},
 		deleteAnswer: function (questionId, answerId, options) {
 			$.ajax({
-				url: "api/lecturerquestion/" + questionId + "/answer/" + answerId,
+				url: window.App.apiPath + "/lecturerquestion/" + questionId + "/answer/" + answerId,
 				type: "DELETE",
 				success: options.success,
 				error: function () {
