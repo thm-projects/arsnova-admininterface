@@ -4,5 +4,5 @@ window.App = {
 	View: {},
 	Service: {},
 	Template: {},
-	apiPah: ""
+	apiPath: ""
 };
